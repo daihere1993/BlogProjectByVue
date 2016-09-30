@@ -1,4 +1,5 @@
 <template>
+  <my-canvas></my-canvas>
   <div id="wrapper">
     <div class="header">
       <a href="/">Blog</a>
@@ -21,11 +22,11 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Canvas from './components/Canvas'
 
 export default {
   components: {
-    Hello
+    'myCanvas': Canvas
   },
   replace: false
 }
