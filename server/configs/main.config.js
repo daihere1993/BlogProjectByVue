@@ -5,7 +5,7 @@ const path = require('path'),
   root = path.resolve(serverRoot, '../'),
   staticDir = path.join(root, 'static'),
   dev = require('./dev.config.js'),
-  dist = require('./dist.config.js')
+  dist = require('./dist.config.js'),
   fs = require('fs'),
   _ = require('lodash')
 
@@ -20,7 +20,7 @@ let config = {
   env: 'production',
   // 配置数据库
   mongoConfig: {
-    url: 'mongodb://locoalhost:27017/first-blog',
+    url: 'mongodb://localhost:27017/first-blog',
     opts: {
       user: '',
       pass: ''
@@ -43,7 +43,7 @@ let config = {
 
 // 本地调试环境
 if (process.env.NODE_ENV === 'development') {
-  config = _.merge(config, env)
+  config = _.merge(config, dev)
 }
 
 // 生产环境

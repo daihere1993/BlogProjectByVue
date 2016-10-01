@@ -1,59 +1,34 @@
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
-var morgan = require('morgan')
-var MongoClient = require('mongodb').MongoClient
-var mongoUrl = 'mongodb://localhost:27017/blog'
-var ObjectId = require('mongodb').ObjectId
-var _db
+'use strict'
+const config = require('./configs/main.config')
 
-// 打印http记录
-app.use(morgan('dev'))
-app.use(bodyParser.json())
-app.use(express.static('dist'))
+const express = require('express'),
+  app = express(),
+  co = require('co'),
+  bodyParser = require('body-parser'),
+  morgan = require('morgan'),
+  cors = require('express-cors'),
+  jwt = require('jsonwebtoken'),
+  mongoose = require('mongoose'),
+  controllers = require('./controllers/main.js'),
+  utils = require('./utils/utils.js')
 
-MongoClient.connect(mongoUrl, function (err, db) {
-  if (err) {
-    console.error(err)
-    return
-  }
-
-  console.log('connect to mongo')
-  _db = db
-  app.listen(8888, function () {
-    console.log('server is running...')
+co(function* () {
+  // 打印http记录
+  app.use(morgan('dev'))
+  app.use(bodyParser.json())
+  app.use(express.static('dist'))
+  // 处理跨域情况
+  app.use(cors({
+    // 请求头的有效期为7天
+    maxAge: 7 * 24 * 60 * 60,
+    methods: 'GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE',
+    headers: 'Content-Type, Accept, Authorization'
+  }))
+  mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts)
+  yield controllers.init(app)
+  app.listen(config.app.port, () => {
+    utils.print('app is listening on port ' + config.app.port)
   })
-})
-
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length,Authorization, Access,X-Requested-With')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  if (res.method === 'OPTIONS') {
-    res.rend(200)
-  } else {
-    next()
-  }
-})
-
-app.get('/home', function (req, res, next) {
-  var collection = _db.collection('notes')
-  collection.find({}).toArray(function (err, result) {
-    if (err) {
-      console.error(err)
-      return
-    }
-
-    res.json(result)
-    next()
-  })
-})
-
-app.get('/note/:id', function (req, res, next) {
-  var _id = req.params.id
-  var collection = _db.collection('notes')
-  collection.findOne({_id: new ObjectId(_id)}).then(function (result) {
-    res.json(result)
-  })
-  
-})
+}).catch((err) => {
+  utiles.print(err.stack)
+}) 
