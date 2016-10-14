@@ -5,7 +5,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './admin/src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -28,12 +28,6 @@ module.exports = {
     preLoaders: [
       {
         test: /\.vue$/,
-        loader: 'eslint',
-        include: projectRoot,
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
         loader: 'eslint',
         include: projectRoot,
         exclude: /node_modules/

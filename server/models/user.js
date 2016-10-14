@@ -1,4 +1,4 @@
-'use strick'
+'use strict'
 const mongoose =require('mongoose'),
   Schema = mongoose.Schema
 const userSchema = new Schema({
@@ -8,4 +8,5 @@ const userSchema = new Schema({
   avatar: String,
   createTime: String
 })
+
 module.exports = mongoose.model('user', userSchema)

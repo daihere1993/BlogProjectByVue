@@ -3,6 +3,7 @@ const Logger = require('mini-logger'),
   validator = require('validator'),
   config = require('../configs/main.config.js'),
   print = require('debug')('blog'),
+  fs = require('fs'),
   utils = {}
 module.exports = utils
 
@@ -15,6 +16,22 @@ utils.logger = Logger({
   dir: config.dir.log,
   format: 'YYYY-MM-DD-[{category}][.log]'
 })
+// 遍历指定路径下的指定类型文件
+utils.forEachFilesByPath = function (path) {
+  fs.readdirSync(path)
+    .forEach(file => {
+      const newPath = path + '/' + file
+      const stat = fs.statSync(newPath)
+
+      if (stat.isFile()) {
+        if (/(.*)\.(js|coffee)/.test(file)) {
+          require(newPath)
+        }
+      } else if (state.isDirectory()) {
+        this.forEachFilesByPath(newPath)
+      }
+    })
+}
 
 // 时间格式化函数
 Date.prototype.format = function (fmt) {
