@@ -43,7 +43,8 @@ exports.create = function (req, res) {
           exp: Math.floor(Date.now()/1000) + 24 * 60 * 60 // 一小时
         }, cert)
         utils.print(token)
-        res.send(JSON.stringify({
+        res.writeHead(200, {'Content-type': 'application/json'})
+        res.end(JSON.stringify({
           uid: user._id,
           name: user.name,
           token

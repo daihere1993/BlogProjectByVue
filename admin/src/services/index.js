@@ -5,7 +5,6 @@
 import store from '../vuex/store'
 import { deleteToken } from '../vuex/actions/token'
 
-console.log(fetch)
 function parseResponse (response) {
   if (response.ok) {
     return Promise.all([response.status, response.statusText, response.json()])

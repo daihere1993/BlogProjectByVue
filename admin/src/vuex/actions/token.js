@@ -5,9 +5,9 @@ import * as types from '../mutation_types'
 import service from '../../services/login/index'
 import {router} from '../../router.js'
 export function createToken (store, username, password) {
-  return service.createToken(username,password).then(res => {
-    if (res.success) {
-      store.dispatch(types.TOKEN_CREATE, res.data.token)
+  return service.createToken(username,password).then(data => {
+    if (data) {
+      store.dispatch(types.TOKEN_CREATE, data.token)
       this.$router.replace('posts')
     }
   })
