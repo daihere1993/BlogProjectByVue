@@ -25,11 +25,12 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(express.static('dist'))
 
-// 跨域初始化
 const MainCtrl = require('./controllers/main')
+// 跨域初始化
 app.all('*', MainCtrl.corsConfig)
-
 app.post('/api/tokens', User.create)
+const Draft = require('./controllers/draft')
+app.get('/api/drafts', Draft.getDraftList)
 
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);

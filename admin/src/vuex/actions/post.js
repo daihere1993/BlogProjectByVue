@@ -4,6 +4,7 @@
 import * as types from '../mutation_types'
 import service from '../../services/posts/index'
 export const getAllPost = ({ dispatch }, tags) => {
+  console.log(tags)
   return service.getDraftList(tags).then(res => {
     if (res.success) {
       dispatch(types.RECEIVE_ALL_POSTS,res.data)
