@@ -26,8 +26,9 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      favicon: './admin/src/assets/img/fav.ico', // favicon的绝对路径
       filename: 'index.html',
-      template: 'index.html',
+      template: './admin/index.html',
       inject: true
     })
   ]
