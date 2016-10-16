@@ -21,7 +21,6 @@
   import store from '../vuex/store'
   import {deleteToken} from '../vuex/actions/token'
   export default {
-    replace: false,
     store,
     vuex: {
       actions: {

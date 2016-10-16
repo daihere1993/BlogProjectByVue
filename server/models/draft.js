@@ -7,7 +7,10 @@ const draftSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'tag'
   }],
-  createTime: Date,
+  createTime: {
+    type: Date,
+    default: Date.now
+  },
   lastEditTime: {
     type: Date,
     default: Date.now
@@ -18,7 +21,10 @@ const draftSchema = new Schema({
     type: Schema.Types.ObjectId,
     reg: 'tag'
   },
-  draftPublished: Boolean
+  draftPublished: {
+    type: Boolean,
+    default: false
+  }
 }, {
   versionKey: false,
   skipVersioning: {tags: true}

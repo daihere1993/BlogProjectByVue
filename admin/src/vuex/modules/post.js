@@ -43,7 +43,7 @@ const mutations = {
     // 当前草稿还没保存的话不允许切换
     if (state.postSaved && state.postTitleSaved) {
       state.currentPostIndex = index
-      state.currentPostId = state.all[index].id
+      state.currentPostId = state.all[index]._id
       state.excerpt = state.all[index].excerpt
       state.articleId = state.all[index].article
       state.title = state.all[index].title
@@ -76,7 +76,7 @@ const mutations = {
       state.all.splice(state.currentPostIndex,1)
       if (state.all.length) {
         state.currentPostIndex = 0
-        state.currentPostId = state.all[0].id
+        state.currentPostId = state.all[0]._id
         state.title = state.all[0].title
         state.articleId = state.all[0].article
       } else {
@@ -108,7 +108,7 @@ const mutations = {
   [POST_CREATE] (state, post) {
     state.all.unshift(post)
     state.currentPostIndex = 0
-    state.currentPostId = state.all[0].id
+    state.currentPostId = state.all[0]._id
     state.title = state.all[0].title
     state.articleId = state.all[0].article
   }

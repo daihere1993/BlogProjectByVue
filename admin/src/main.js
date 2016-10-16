@@ -5,7 +5,7 @@ import adminComponent from './components/Admin.vue'
 import { router } from './router.js'
 import md2Text from './filters/md2Text'
 
-// require('font-awesome/css/font-awesome.min.css')
+require('font-awesome/css/font-awesome.min.css')
 
 window.alert = MessageBox
 window.alert = MessageBox

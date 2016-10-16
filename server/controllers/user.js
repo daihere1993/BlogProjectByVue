@@ -14,7 +14,7 @@ const User = mongoose.model('user')
 exports.seed = function () {
   User.find({}, function (err, userModels) {
     if (userModels.length === 0) {
-      user = new User({
+      const user = new User({
         name: 'admin',
         username: 'admin',
         password: md5('admin').toUpperCase(),
@@ -23,7 +23,7 @@ exports.seed = function () {
       })
       user.save().catch(err => {
         utils.logger.error(err)
-        thorw(new Error('数据seed失败, 请debug后重新启动'))
+        throw(new Error('数据seed失败, 请debug后重新启动'))
       })
     }
   })

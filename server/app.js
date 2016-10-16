@@ -31,7 +31,9 @@ app.all('*', MainCtrl.corsConfig)
 app.post('/api/tokens', User.create)
 const Draft = require('./controllers/draft')
 app.get('/api/drafts', Draft.getDraftList)
-
+app.post('/api/drafts', Draft.create)
+app.get('/api/drafts/:id', Draft.getDraftById)
+app.patch('/api/drafts/:id', Draft.modify)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })

@@ -73,7 +73,7 @@ export function _debounce (func, wait, immediate = false) {
         clearTimeout(_timer);
       }
       _timestamp = now;
-      _timer = setTimeout(func.bind(this,...arguments),wait)
+      _timer = setTimeout(func.bind(this, ...arguments), wait)
     }
   }else{
     return function(){
@@ -83,7 +83,7 @@ export function _debounce (func, wait, immediate = false) {
         return;
       }
       _timestamp = now;
-      func.apply(this,arguments)
+      func.apply(this, arguments)
     }
   }
 }
