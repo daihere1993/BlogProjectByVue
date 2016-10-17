@@ -20,7 +20,7 @@ module.exports.getDraftList = function (req, res) {
       const resultArr = []
       if (draftModels.length) {
         draftModels.forEach((draftModel) => {
-          let draft = draftModel._doc
+          let draft = draftModel.toObject()
           resultArr.push(draft)
         })
       }
@@ -42,7 +42,7 @@ module.exports.create = function (req, res) {
   })
   res.end(JSON.stringify({
     success: true,
-    data: draft._doc
+    data: draft.toObject()
   }))
 } 
 
@@ -71,7 +71,7 @@ module.exports.modify = function (req, res) {
           }
         }
 
-        const draft = draftModel._doc
+        const draft = draftModel.toObject()
         res.end(JSON.stringify({
           success: true,
           data: draft
@@ -93,7 +93,7 @@ module.exports.getDraftById = function (req, res) {
 
       res.end(JSON.stringify({
         success: true,
-        data: draftModel._doc
+        data: draftModel.toObject()
       }))
     })
 }

@@ -16,8 +16,12 @@ mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts)
 // 初始化各个模型
 utils.forEachFilesByPath(__dirname + '/models')
 
-// 初始化user
+const MainCtrl = require('./controllers/main')
 const User = require('./controllers/user')
+const Draft = require('./controllers/draft')
+const Publications = require('./controllers/Publications')
+
+// 初始化user
 User.seed()
 
 // 打印http记录
@@ -25,15 +29,14 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(express.static('dist'))
 
-const MainCtrl = require('./controllers/main')
 // 跨域初始化
 app.all('*', MainCtrl.corsConfig)
 app.post('/api/tokens', User.create)
-const Draft = require('./controllers/draft')
 app.get('/api/drafts', Draft.getDraftList)
 app.post('/api/drafts', Draft.create)
 app.get('/api/drafts/:id', Draft.getDraftById)
 app.patch('/api/drafts/:id', Draft.modify)
+app.post('/api/publications', Publications.create)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })

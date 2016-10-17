@@ -34,7 +34,7 @@ exports.create = function (req, res) {
   const username = req.body.username,
     password = req.body.password
   User.findOne({username: username}, function (err, userModel) {
-    let user = userModel._doc
+    let user = userModel.toObject()
     if (user !== null) {
       if (user.password === password) {
         const token = jwt.sign({
