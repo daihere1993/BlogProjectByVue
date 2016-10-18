@@ -34,7 +34,15 @@ module.exports.getDraftList = function (req, res) {
 
 module.exports.create = function (req, res) {
   const title = req.body.title || this.throw(400, '标题不能为空')
-  const draft = new Draft({ title, article: null })
+  const draft = new Draft({ 
+    title,
+    createTime: new Date(),
+    lastEditTime: new Date(),
+    excerpt: '',
+    content: '',
+    article: null,
+    draftPublished: false
+  })
 
   draft.save().catch(err => {
     utils.logger.error(err)
@@ -59,9 +67,9 @@ module.exports.modify = function (req, res) {
       }
     } 
     req.body.lastEditTime = new Date()
-    this.body.draftPublished = false
+    req.body.draftPublished = false
     Draft.findByIdAndUpdate(id, {$set: req.body}, {new: true})
-      .puplate('tags').exec((err, draftModel) => {
+      .populate('tags').exec((err, draftModel) => {
         if (err) {
           if (err.name === 'CastError') {
             this.throw(400, 'id不存在')

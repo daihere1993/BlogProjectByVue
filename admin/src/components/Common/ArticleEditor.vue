@@ -295,7 +295,6 @@
         },
         spellChecker: false
       })
-      console.log('xx')
       let postDraft = _debounce(() => {
         service.modifyDraftContent(this.currentPostId, smde.value()).then(res => {
           if (res.success) {

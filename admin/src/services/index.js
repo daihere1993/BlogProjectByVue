@@ -6,11 +6,7 @@ import store from '../vuex/store'
 import { deleteToken } from '../vuex/actions/token'
 
 function parseResponse (response) {
-  if (response.ok) {
-    return Promise.all([response.status, response.statusText, response.json()])
-  } else {
-    console.log('Network response was not ok.')
-  }
+  return Promise.all([response.status, response.statusText, response.json()])
 }
 function checkStatus ([status, statusText, data]) {
   if (status >= 200 && status < 300) {
