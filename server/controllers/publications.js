@@ -15,7 +15,6 @@ const utils = require('../utils/utils'),
       if (!draft.title) {
         throw(400, '文章标题不能为空')
       } else if (!draft.excerpt) {
-        // throw(400, '文章摘要不能为空, 请在文章中插入\'<!-- more -->\'以分隔摘要和正文')
         res.status(400).send({ error: '文章摘要不能为空, 请在文章中插入\'<!-- more -->\'以分隔摘要和正文' })
       } else if (!draft.content) {
         throw(400, '文章内容不能为空')

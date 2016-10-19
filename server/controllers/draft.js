@@ -15,7 +15,7 @@ module.exports.getDraftList = function (req, res) {
     .exec((err, draftModels) => {
       if (err) {
         utils.logger.error(err)
-        this.throw(500, '内部错误')
+        res.status(500).send({ error: '内部错误' })
       }
       const resultArr = []
       if (draftModels.length) {
@@ -33,7 +33,7 @@ module.exports.getDraftList = function (req, res) {
 }
 
 module.exports.create = function (req, res) {
-  const title = req.body.title || this.throw(400, '标题不能为空')
+  const title = req.body.title || res.status(400).send({ error: '标题不能为空' })
   const draft = new Draft({ 
     title,
     createTime: new Date(),
@@ -72,10 +72,10 @@ module.exports.modify = function (req, res) {
       .populate('tags').exec((err, draftModel) => {
         if (err) {
           if (err.name === 'CastError') {
-            this.throw(400, 'id不存在')
+            res.status(400).send({ error: 'id不存在' })
           } else {
             utils.logger.error(err)
-            this.throw(500, '内部错误')
+            res.status(500).send({ error: '内部错误' })
           }
         }
 
@@ -96,7 +96,7 @@ module.exports.getDraftById = function (req, res) {
     .exec((err, draftModel) => {
       if (err) {
         utils.logger.error(err)
-        this.throw(500, '内部错误')
+        res.status(500).send({ error: '内部错误' })
       }
 
       res.end(JSON.stringify({
