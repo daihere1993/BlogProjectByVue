@@ -19,7 +19,8 @@ utils.forEachFilesByPath(__dirname + '/models')
 const MainCtrl = require('./controllers/main')
 const User = require('./controllers/user')
 const Draft = require('./controllers/draft')
-const Publications = require('./controllers/Publications')
+const Publication = require('./controllers/publication')
+const Tag = require('./controllers/tag')
 
 // 初始化user
 User.seed()
@@ -35,7 +36,9 @@ app.get('/api/drafts', Draft.getDraftList)
 app.post('/api/drafts', Draft.create)
 app.get('/api/drafts/:id', Draft.getDraftById)
 app.patch('/api/drafts/:id', Draft.modify)
-app.post('/api/publications', Publications.create)
+app.post('/api/publications', Publication.create)
+app.get('/api/tags', Tag.getTags)
+app.post('/api/tags', Tag.create)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })

@@ -38,6 +38,6 @@ export default {
     return api.delete('drafts/' + id)
   },
   searchTagWithWord (keyword) {
-    return api.get('tags', {'start-with': keyword})
+    return api.get('tags', {'keyword': keyword})
   }
 }
