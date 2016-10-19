@@ -50,10 +50,10 @@ exports.create = function (req, res) {
           token
         }))
       } else {
-        this.throw(401, '密码错误')
+        res.status(400).send({ error: '密码错误' })
       }
     } else {
-      this.throw(401, '用户名错误')
+      res.status(401).send({ error: '用户名错误' })
     }
   })
 }

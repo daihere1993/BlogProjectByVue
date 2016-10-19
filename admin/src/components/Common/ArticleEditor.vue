@@ -446,7 +446,6 @@
         this.publishPost().then(() => {
           window.alert('发布成功')
         }).catch(err => {
-          if (err) throw err
           window.alert(err.error_message && err.error_message.error + '' || '网络错误,保存失败')
         })
       },
