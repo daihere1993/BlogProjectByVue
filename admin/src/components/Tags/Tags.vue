@@ -52,19 +52,17 @@
         currentPostId
       }
     },
-    route: {
-      data () {
-        service.getAllTags().then(res => {
-          if (res.success) {
-            for (let i of res.data) {
-              i.newName = ''
-              i.editing = false
-            }
-            this.tags = res.data
-            this.getAllPost()
+    ready () {
+      service.getAllTags().then(res => {
+        if (res.success) {
+          for (let i of res.data) {
+            i.newName = ''
+            i.editing = false
           }
-        })
-      }
+          this.tags = res.data
+          this.getAllPost()
+        }
+      })
     },
     methods: {
       searchTag (tag) {

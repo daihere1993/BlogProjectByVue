@@ -8,7 +8,7 @@ module.exports.getTags = function (req, res) {
   const keyword = req.body.keyword,
     queryOption= {}
 
-  if (!keyword) {
+  if (keyword) {
     queryOption.name = {$regex: '^' + keyword}
   }
   Tag.find(queryOption, (err, tags) => {

@@ -3,7 +3,7 @@ const mongoose =require('mongoose'),
   utils = require('../utils/utils')
 
 module.exports.getDraftList = function (req, res) {
-  const tag = req.body.tag,
+  const tag = req.query.tag,
     queryOpt = {}
   if (tag !== undefined) {
     queryOpt.tags = {'$all': [tag]}
