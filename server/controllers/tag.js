@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
   Draft = mongoose.model('draft')
 
 module.exports.getTags = function (req, res) {
-  const keyword = req.body.keyword,
+  const keyword = req.query.keyword,
     queryOption= {}
 
   if (keyword) {
