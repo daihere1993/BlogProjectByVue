@@ -14,7 +14,7 @@ module.exports.seed = function () {
   })
 }
 
-module.exports.getContent = function (req, res) {
+module.exports.get = function (req, res) {
   Me.find({}, (err, mes) => {
     if (err) {
       utils.logger.error(err)
@@ -26,5 +26,21 @@ module.exports.getContent = function (req, res) {
         data: mes[0].toObject()
       })
     }
+  })
+}
+
+module.exports.save = function (req, res) {
+  const content = req.body.content
+
+  Me.findOneAndUpdate({}, {content}, (err, me) => {
+    if (err) {
+      utils.logger.error(err)
+      res.status(500).send({ error: '内部错误' })
+    }
+
+    res.send({
+      success: true,
+      data: me && me.toObject()
+    })
   })
 }

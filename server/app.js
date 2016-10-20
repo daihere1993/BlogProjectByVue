@@ -42,7 +42,8 @@ app.patch('/api/drafts/:id', Draft.modify)
 app.post('/api/publications', Publication.create)
 app.get('/api/tags', Tag.getTags)
 app.post('/api/tags', Tag.create)
-app.get('/api/me', Me.getContent)
+app.get('/api/me', Me.get)
+app.patch('/api/me', Me.save)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })
