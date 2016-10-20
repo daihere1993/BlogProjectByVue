@@ -25,17 +25,15 @@
         content: ''
       }
     },
-    route: {
-      data () {
-        return service.getAboutMe().then(res => {
-          if (res.success) {
-            this.content = res.data.content
-          }
-        }).catch(error => {
-          if (error) throw error
-          window.alert('获取内容失败')
-        })
-      }
+    ready () {
+      service.getAboutMe().then(res => {
+        if (res.success) {
+          this.content = res.data.content
+        }
+      }).catch(error => {
+        if (error) throw error
+        window.alert('获取内容失败')
+      })
     },
     methods: {
       save () {

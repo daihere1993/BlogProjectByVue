@@ -21,9 +21,12 @@ const User = require('./controllers/user')
 const Draft = require('./controllers/draft')
 const Publication = require('./controllers/publication')
 const Tag = require('./controllers/tag')
+const Me = require('./controllers/me')
 
 // 初始化user
 User.seed()
+// 初始化me
+Me.seed()
 
 // 打印http记录
 app.use(morgan('dev'))
@@ -39,6 +42,7 @@ app.patch('/api/drafts/:id', Draft.modify)
 app.post('/api/publications', Publication.create)
 app.get('/api/tags', Tag.getTags)
 app.post('/api/tags', Tag.create)
+app.get('/api/me', Me.getContent)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })
