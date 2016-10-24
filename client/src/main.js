@@ -1,30 +1,13 @@
 import Vue from 'vue'
-import App from './App'
-import './style/common.css'
-import './style/post.css'
-import Home from './components/Home.vue'
-import Note from './components/Note.vue'
-import VueMoment from 'vue-moment'
-import VueResource from 'vue-resource'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
+import routes from './routes'
+import Blog from './Blog'
+import {markdown} from './filters/index'
+import './stylus/index.styl'
 
-Vue.use(VueRouter)
-Vue.use(VueResource)
-Vue.use(VueMoment)
+Vue.use(Router)
+Vue.filter('markdown', markdown);
 
-const router = new VueRouter()
-
-router.map({
-  '/home': {
-    component: Home
-  },
-  '/note/:id': {
-    component: Note
-  }
-})
-
-router.redirect({
-  '*': '/home'
-})
-
-router.start(App, '#app')
+const router = new Router()
+routes(router)
+router.start(Blog, 'blog')

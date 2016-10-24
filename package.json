@@ -12,6 +12,7 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "dev-admin": "node admin/build/dev-server.js",
+    "dev-client": "node client/build/dev-server.js",
     "dev-server": "NODE_ENV=development DEBUG=blog supervisor --harmony server/app.js"
   },
   "dependencies": {
