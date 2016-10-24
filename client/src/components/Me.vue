@@ -9,19 +9,20 @@
 <script>
   import service from '../services/me/index'
   export default{
-    data(){
+    data () {
       return {
-        content:''
+        content: ''
       }
     },
-    route:{
-      data(){
+    route: {
+      data () {
         return service.getAboutMe().then(res => {
-          if(res.success){
-            this.content = res.data.content;
+          if (res.success) {
+            this.content = res.data.content
           }
         }).catch(err => {
-          alert('获取内容失败');
+          console.log(err)
+          alert('获取内容失败')
         })
       }
     }

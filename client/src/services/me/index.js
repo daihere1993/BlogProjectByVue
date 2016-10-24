@@ -3,7 +3,7 @@
  */
 import api from '../index.js'
 export default {
-  getAboutMe(){
+  getAboutMe () {
     return api.get('me');
   }
 }

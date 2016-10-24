@@ -3,20 +3,20 @@
  */
 import List from 'components/PostList.vue'
 import Post from 'components/Post.vue'
-export default (router)=>{
+export default (router) => {
   router.map({
-    '/posts':{
+    '/posts': {
       component: List
     },
-    '/posts/:postId':{
+    '/posts/:postId': {
       component: Post
     },
-    '/tags':{
+    '/tags': {
       component: function (resolve) {
         require(['components/Tag.vue'], resolve)
       },
     },
-    '/me':{
+    '/me': {
       component: function (resolve) {
         require(['components/Me.vue'], resolve)
       },

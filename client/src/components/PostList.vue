@@ -28,52 +28,54 @@
 <script>
   import Pagination from './common/Pagination.vue'
   import service from '../services/postlist/index'
-  import { getParameterByName } from '../lib/utils'
-  const limit = 10;
+  const limit = 10
   export default {
-    components:{
+    components: {
       Pagination
     },
     data () {
       return {
-        posts:[],
-        totalPage:0,
-        curPage:1
+        posts: [],
+        totalPage: 0,
+        curPage: 1
       }
     },
-    route:{
-      data(){
-        service.getPostList({page: this.curPage, limit}).then(res=>{
-          if(res.success === true){
+    route: {
+      data () {
+        service.getPostList({page: this.curPage, limit}).then(res => {
+          if (res.success === true) {
             this.posts = res.data.articles
-            this.totalPage = Math.ceil(res.data.total/limit)
+            this.totalPage = Math.ceil(res.data.total / limit)
           }
         }).catch(err => {
-          alert('网络错误,请刷新重试');
+          console.log(err)
+          alert('网络错误,请刷新重试')
         })
       }
     },
-    methods:{
-      prevPage(){
-        service.getPostList({page:this.curPage-1,limit}).then(res=>{
+    methods: {
+      prevPage () {
+        service.getPostList({page: this.curPage - 1, limit}).then(res => {
           this.curPage--
-          if(res.success === true){
-            this.posts = res.data.articles;
-            this.totalPage = Math.ceil(res.data.total/limit);
+          if (res.success === true) {
+            this.posts = res.data.articles
+            this.totalPage = Math.ceil(res.data.total / limit)
           }
-        }).catch(err=>{
-          alert('网络错误,请刷新重试');
+        }).catch(err => {
+          console.log(err)
+          alert('网络错误,请刷新重试')
         })
       },
-      nextPage(){
-        service.getPostList({page:this.curPage+1,limit}).then(res=>{
+      nextPage () {
+        service.getPostList({page: this.curPage + 1, limit}).then(res => {
           this.curPage++
-          if(res.success === true){
-            this.posts = res.data.articles;
-            this.totalPage = Math.ceil(res.data.total/limit);
+          if (res.success === true) {
+            this.posts = res.data.articles
+            this.totalPage = Math.ceil(res.data.total / limit)
           }
-        }).catch(err=>{
-          alert('网络错误,请刷新重试');
+        }).catch(err => {
+          console.log(err)
+          alert('网络错误,请刷新重试')
         })
       }
     }

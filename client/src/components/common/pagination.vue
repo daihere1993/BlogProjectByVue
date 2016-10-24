@@ -10,28 +10,28 @@
 </style>
 <script>
 export default {
-  props:{
-    prev:{
-      type:Boolean,
-      default:true,
+  props: {
+    prev: {
+      type: Boolean,
+      default: true
     },
-    prevWord:{
-      type:String,
-      default:'上一页',
+    prevWord: {
+      type: String,
+      default: '上一页'
     },
-    prevLink:{
-      type:String
+    prevLink: {
+      type: String
     },
     next: {
-      type:Boolean,
-      default:true,
+      type: Boolean,
+      default: true
     },
     nextLink: {
-      type:String
+      type: String
     },
     nextWord: {
-      type:String,
-      default:'下一页',
+      type: String,
+      default: '下一页'
     }
   }
 }

@@ -27,25 +27,25 @@
 <script>
   import service from '../services/tag/index'
   export default{
-    data(){
+    data () {
       return {
-        tagAndItsArticles:[],
-        tags:[]
+        tagAndItsArticles: [],
+        tags: []
       }
     },
-    route:{
-      data(){
-        this.tags = [];
-        this.tagAndItsArticles = [];
+    route: {
+      data () {
+        this.tags = []
+        this.tagAndItsArticles = []
         service.getAllTags().then(res => {
-          if(res.success){
+          if (res.success) {
             res.data.map(tag => {
-              service.getPostListWithTag(tag.id).then(resp=>{
-                if(resp.success){
-                  if(resp.data.length){
+              service.getPostListWithTag(tag.id).then(resp => {
+                if (resp.success) {
+                  if (resp.data.length) {
                     tag.articles = resp.data
-                    this.tags.push({name:tag.name,id:tag.id});
-                    this.tagAndItsArticles.push(tag);
+                    this.tags.push({name: tag.name, id: tag.id})
+                    this.tagAndItsArticles.push(tag)
                   }
                 }
               })
@@ -54,10 +54,10 @@
         })
       }
     },
-    methods:{
-      focus(id){
-        let dom = document.getElementById(id);
-        window.scrollTo(0,dom.offsetTop);
+    methods: {
+      focus (id) {
+        let dom = document.getElementById(id)
+        window.scrollTo(0, dom.offsetTop)
       }
     }
   }

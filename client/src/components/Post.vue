@@ -47,14 +47,13 @@
 <script>
   import Pagination from './common/Pagination.vue'
   import service from '../services/post/index'
-  import cursor from '../directives/vue-duoshuo'
   export default {
-    components:{
+    components: {
       Pagination
     },
     data () {
       return {
-        'id':'',
+        'id': '',
         'title': '',
         'createTime': '',
         'excerpt': '',
@@ -62,39 +61,40 @@
         'lastEditTime': null,
         'tags': [],
         'visits': 0,
-        'nextArticle':null,
-        'prevArticle':null,
-        'duoshuoOption':{}
+        'nextArticle': null,
+        'prevArticle': null,
+        'duoshuoOption': {}
       }
     },
-    route:{
-      data({to}){
-        return service.getPost(to.params.postId).then(res=>{
-          if(res.success === true ){
-            if(null !== res.data){
-              delete res.data._id;
+    route: {
+      data ({to}) {
+        return service.getPost(to.params.postId).then(res => {
+          if (res.success === true) {
+            if (res.data !== null) {
+              delete res.data._id
               let duoshuoOption = {
-                id:res.data.id,
-                title:res.data.title
+                id: res.data.id,
+                title: res.data.title
               }
               this.duoshuoOption = duoshuoOption
               return res.data
-            }else{
-              this.title = '404 not found';
-              this.createTime = '';
-              this.excerpt = '';
-              this.content = '';
-              this.lastEditTime = null;
-              this.tags = [];
-              this.visits = 0;
-              this.nextArticle = null;
-              this.prevArticle = null;
+            } else {
+              this.title = '404 not found'
+              this.createTime = ''
+              this.excerpt = ''
+              this.content = ''
+              this.lastEditTime = null
+              this.tags = []
+              this.visits = 0
+              this.nextArticle = null
+              this.prevArticle = null
             }
           }
-        }).catch(err=>{
-          alert('网络错误,请刷新重试');
+        }).catch(err => {
+          console.log(err)
+          alert('网络错误,请刷新重试')
         })
-      },
+      }
     }
   }
 </script>
