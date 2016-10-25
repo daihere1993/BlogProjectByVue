@@ -46,6 +46,7 @@ app.post('/api/tags', Tag.create)
 app.get('/api/me', Me.get)
 app.patch('/api/me', Me.save)
 app.get('/api/articles', Article.getArticleList)
+app.get('/api/articles/:id', Article.getArticle)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })

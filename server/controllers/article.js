@@ -48,3 +48,31 @@ module.exports.getArticleList = function (req, res) {
       })
     })
 }
+
+module.exports.getArticle = function (req, res) {
+  const id = req.params.id
+  if (!id.match(/^[0-9a-fA-F]{24}$/)){
+    res.status(400).send({error: 'invalid id'})
+  }
+  
+  Article.findOne({_id: id, hidden: false}, (err, article) => {
+    if (err) {
+      utils.logger.error(err)
+      res.status(400).send({error: '内部错误'})
+    }
+    
+    if (article) {
+      article = article.toObject()
+      Article.findOne({_id: {$gt: article._id}}, '_id title', (err, nextArticle) => {
+        article.nextArticle = nextArticle
+        Article.findOne({_id: {$lt: article._id}}, '_id title').sort({_id: -1}).exec((err, prevArticle) => {
+          article.prevArticle = prevArticle
+          res.send({
+            success: true,
+            data: article
+          })
+        })
+      })
+    }
+  })
+}
