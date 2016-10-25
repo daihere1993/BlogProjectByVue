@@ -14,7 +14,7 @@
       </p>
 
       <footer>
-        <a v-link="'/posts/'+post['_id']">... continue reading</a>
+        <a v-link="'/posts/'+post['_id']">... 详情</a>
       </footer>
 
     </article>
@@ -40,18 +40,16 @@
         curPage: 1
       }
     },
-    route: {
-      data () {
-        service.getPostList({page: this.curPage, limit}).then(res => {
-          if (res.success === true) {
-            this.posts = res.data.articles
-            this.totalPage = Math.ceil(res.data.total / limit)
-          }
-        }).catch(err => {
-          console.log(err)
-          alert('网络错误,请刷新重试')
-        })
-      }
+    ready () {
+      service.getPostList({page: this.curPage, limit}).then(res => {
+        if (res.success === true) {
+          this.posts = res.data.articles
+          this.totalPage = Math.ceil(res.data.total / limit)
+        }
+      }).catch(err => {
+        console.log(err)
+        alert('网络错误,请刷新重试')
+      })
     },
     methods: {
       prevPage () {

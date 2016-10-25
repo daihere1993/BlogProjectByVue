@@ -3,7 +3,7 @@
     <nav class="top-nav">
       <a href="javascript:;" class="vertical-center nav-logo">
         <img src="../../assets/img/logo.png" class="logo vertical-center-content" alt="">
-        <span class="brand vertical-center-content">Chuck Liu</span>
+        <span class="brand vertical-center-content">First Blog</span>
       </a>
       <ul class="nav-link-container">
         <li class="nav-link-item"><a class="nav-link" v-link="{ path: '/posts', activeClass: 'active' }" >文章</a></li>

@@ -1,0 +1,12 @@
+2016-10-25 18:52:59.714 nodejs.MongoErrorException: MongoError: Failed to parse: { find: "articles", filter: { hidden: false }, sort: { createTime: -1 }, projection: { title: 1, visits: 1, tags: 1, createTime: 1, lastEditTime: 1, excerpt: 1 }, limit: "10" }. 'limit' field must be numeric.
+    at Function.MongoError.create (/Users/daihere/Desktop/code/vue/blog/node_modules/mongodb-core/lib/error.js:31:11)
+    at queryCallback (/Users/daihere/Desktop/code/vue/blog/node_modules/mongodb-core/lib/cursor.js:213:36)
+    at /Users/daihere/Desktop/code/vue/blog/node_modules/mongodb-core/lib/connection/pool.js:436:18
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+pid: 41700
+Host: 192.168.3.4
+URL: 
+Data: ''
+2016-10-25 18:52:59.714
+

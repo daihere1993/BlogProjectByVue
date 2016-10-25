@@ -22,6 +22,7 @@ const Draft = require('./controllers/draft')
 const Publication = require('./controllers/publication')
 const Tag = require('./controllers/tag')
 const Me = require('./controllers/me')
+const Article = require('./controllers/article')
 
 // 初始化user
 User.seed()
@@ -44,6 +45,7 @@ app.get('/api/tags', Tag.getTags)
 app.post('/api/tags', Tag.create)
 app.get('/api/me', Me.get)
 app.patch('/api/me', Me.save)
+app.get('/api/articles', Article.getArticleList)
 app.listen(config.app.port, () => {
   utils.print('app is listening on port ' + config.app.port);
 })
