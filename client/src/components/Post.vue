@@ -47,6 +47,7 @@
 <script>
   import Pagination from './common/Pagination.vue'
   import service from '../services/post/index'
+  import '../directives/vue-duoshuo'
   export default {
     components: {
       Pagination
@@ -68,26 +69,29 @@
     },
     route: {
       data ({to}) {
+        var self = this
         return service.getPost(to.params.postId).then(res => {
           if (res.success === true) {
             if (res.data !== null) {
               delete res.data._id
+              delete res.data.comments
+              delete res.data.hidden
               let duoshuoOption = {
                 id: res.data.id,
                 title: res.data.title
               }
-              this.duoshuoOption = duoshuoOption
+              self.duoshuoOption = duoshuoOption
               return res.data
             } else {
-              this.title = '404 not found'
-              this.createTime = ''
-              this.excerpt = ''
-              this.content = ''
-              this.lastEditTime = null
-              this.tags = []
-              this.visits = 0
-              this.nextArticle = null
-              this.prevArticle = null
+              self.title = '404 not found'
+              self.createTime = ''
+              self.excerpt = ''
+              self.content = ''
+              self.lastEditTime = null
+              self.tags = []
+              self.visits = 0
+              self.nextArticle = null
+              self.prevArticle = null
             }
           }
         }).catch(err => {
