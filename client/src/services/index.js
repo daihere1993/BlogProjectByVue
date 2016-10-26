@@ -34,7 +34,6 @@ export default{
     var init = {
       method: 'GET',
       headers: reqHeaders,
-      credentials: "include",
       cache: 'default',
       mode: 'cors'
     }
@@ -52,7 +51,6 @@ export default{
     var init = {
       method: 'PATCH',
       headers: reqHeaders,
-      credentials: "include",
       mode: 'cors',
       body: JSON.stringify(param)
     }
@@ -70,7 +68,6 @@ export default{
     var init = {
       method: 'POST',
       headers: reqHeaders,
-      credentials: "include",
       mode: 'cors',
       body: JSON.stringify(param)
     }
@@ -89,7 +86,6 @@ export default{
     var init = {
       method: 'PUT',
       headers: reqHeaders,
-      credentials: "include",
       mode:'cors',
       body: JSON.stringify(param)
     }
@@ -107,7 +103,6 @@ export default{
 
     var init = {
       method: 'DELETE',
-      credentials: "include",
       headers: reqHeaders,
       mode: 'cors'
     }
