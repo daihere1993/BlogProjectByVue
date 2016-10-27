@@ -42,8 +42,8 @@
             res.data.map(tag => {
               service.getPostListWithTag(tag.id).then(resp => {
                 if (resp.success) {
-                  if (resp.data.length) {
-                    tag.articles = resp.data
+                  if (resp.data.articles.length) {
+                    tag.articles = resp.data.articles
                     this.tags.push({name: tag.name, id: tag.id})
                     this.tagAndItsArticles.push(tag)
                   }
