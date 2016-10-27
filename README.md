@@ -8,25 +8,13 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# start up server
+npm run dev-server
 
-# build for production with minification
-npm run build
+# start up client 
+npm run dev-client
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-
-# start node server
-node app.js
-
-# http://localhost:8080 
+# start up admin 
+npm run dev-admin
+ 
 ```
-
-# blog

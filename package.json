@@ -34,6 +34,7 @@
     "simplemde": "^1.11.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
+    "thunkify": "^2.1.2",
     "validator": "^6.0.0",
     "vue": "^1.0.21",
     "vue-moment": "^2.0.1",
