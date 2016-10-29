@@ -20,8 +20,7 @@ module.exports = ({app}) => {
 
       const draftList = []
       if (drafts.length) {
-        drafts.forEach((draftModel) => {
-          let draft = draftModel.toObject()
+        drafts.forEach((draft) => {
           draftList.push(draft)
         })
       }
@@ -62,9 +61,9 @@ module.exports = ({app}) => {
         .populate('tags')
         .select('title tags createTime lastEditTime excerpt article draftPublished content')
       
-      res.end({
+      res.send({
         success: true,
-        data: draftModel.toObject()
+        data: draft
       })
     })
   }

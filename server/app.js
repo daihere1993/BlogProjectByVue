@@ -28,15 +28,15 @@ function corsConfig (req, res, next) {
   }
 }
 
-// 初始化数据库以及各个模型
-require(__dirname + '/models/except')
-// 初始化各个控制器
-U.forEachFilesByPath(__dirname + '/controllers', {app})
-
 // 打印http记录
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(express.static('dist'))
+
+// 初始化数据库以及各个模型
+require(__dirname + '/models/except')
+// 初始化各个控制器
+U.forEachFilesByPath(__dirname + '/controllers', {app})
 
 app.listen(C.app.port, () => {
   U.print('app is listening on port ' + C.app.port);

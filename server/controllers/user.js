@@ -7,7 +7,7 @@ module.exports = function ({app}) {
 
   // 初始化user
   seed()
-  app.get('/api/tokens', login)
+  app.post('/api/tokens', login)
   
   /**
    * 生成初始admin用户
