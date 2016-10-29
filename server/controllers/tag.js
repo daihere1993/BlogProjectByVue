@@ -14,7 +14,7 @@ module.exports = ({app}) => {
       if (keyword) {
         queryOption.name = {$regex: '^' + keyword}
       }
-      let tag = yield Tag.find(queryOption)
+      let tags = yield Tag.find(queryOption)
       res.send({
         success: true,
         data: tags
