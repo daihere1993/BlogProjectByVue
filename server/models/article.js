@@ -1,6 +1,4 @@
-const mongoose = require('mongoose'),
-  Schema = mongoose.Schema
-const articleSchema = new Schema({
+module.exports = ({Schema}) => ({
   title: String,
   visits: {
     type: Number,
@@ -25,15 +23,4 @@ const articleSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'comment'
   }]
-}, { versionKey: false, skipVersioning: {tags: true} })
-
-articleSchema.set('toJSON', { getters: true, virtuals: true});
-articleSchema.set('toObject', { getters: true, virtuals: true});
-articleSchema.path('createTime').get(function (v) {
-  return new Date(v).format('yyyy-MM-dd hh:mm:ss');
 });
-articleSchema.path('lastEditTime').get(function (v) {
-  return new Date(v).format('yyyy-MM-dd hh:mm:ss');
-});
-const article =  mongoose.model('article', articleSchema);
-module.exports = article;
