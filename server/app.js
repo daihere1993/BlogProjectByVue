@@ -13,6 +13,21 @@ global.M = {}
 global.C = require('./configs')
 global.U = require('./utils')
 
+// 处理跨域
+app.all('*', corsConfig)
+
+function corsConfig (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length,Authorization, Access,X-Requested-With')
+  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,PATCH,OPTIONS')
+  if (res.method === 'OPTIONS') {
+    res.rend(200)
+  } else {
+    next()
+  }
+}
+
 // 初始化数据库以及各个模型
 require(__dirname + '/models/except')
 // 初始化各个控制器
