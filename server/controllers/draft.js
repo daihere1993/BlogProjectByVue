@@ -85,7 +85,7 @@ module.exports = ({app}) => {
       req.body.draftPublished = false
 
       let draft = yield Draft.findByIdAndUpdate(id, {$set: req.body}, {new: true}).populate('tags')
-      res.end({
+      res.send({
         success: true,
         data: draft
       })

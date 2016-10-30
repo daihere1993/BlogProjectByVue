@@ -44,7 +44,7 @@ module.exports = ({app}) => {
           }
           res.send({
             success: true,
-            data: tag.toObject()
+            data: tag
           })
         })
         }

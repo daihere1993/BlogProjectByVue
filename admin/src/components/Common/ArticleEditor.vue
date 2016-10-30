@@ -6,11 +6,12 @@
     <div class="clearfix">
       <div class="half-container">
         <i class="icon-biaoqian iconfont" style="margin-right:5px"></i>
-        <span class="tag" v-for="tag in tags">{{tag['name']}} <i class="icon-chacha iconfont delete-tag" @click="deleteTag(tag.id)"></i></span>
+        <span class="tag" v-for="tag in tags">{{tag['name']}} <i class="icon-chacha iconfont delete-tag" @click="deleteTag(tag._id)"></i></span>
         <div class="tag active">
-          <span v-show="!tagInput" @click="addTag()" >+</span> <input type="text" class="tag-input" v-show="tagInput" v-model="tagNew" placeholder="使用回车键提交" @keyup.13="submitTag">
+          <span v-show="!tagInput" @click="addTag()" style="cursor: pointer" >+</span>
+          <input type="text" class="tag-input" v-show="tagInput" v-model="tagNew" placeholder="使用回车键提交" @keyup.13="submitTag" @keyup.esc="tagInput = false" v-el:tag-input>
           <ul class="search-list reset-list" v-if="tagInput" v-show="tagsToAdd.length">
-            <li class="search-item" @click="submitTag(tag['name'])" v-for="tag in tagsToAdd">{{tag['name']}}</li>
+            <li class="search-item" @click="submitTag(tag['name'])" style="cursor: pointer;" v-for="tag in tagsToAdd">{{tag['name']}}</li>
           </ul>
         </div>
       </div>
@@ -57,6 +58,7 @@
       border-bottom 2px solid $green
       .iconfont
         display inline
+        cursor: pointer
     &.active
       color $green
       border-bottom 2px solid $green
@@ -387,6 +389,8 @@
     },
     methods: {
       submitTag (val) {
+        let self = this
+
         this.tagInput = false
         let tag
         if (typeof val === 'string') {
@@ -399,18 +403,18 @@
           return
         }
         service.createTags(tag).then(res => {
-          let id = res.data.id
-          if (this.tags.some(item => item.id === id)) {
+          let id = res.data._id
+          if (self.tags.some(item => item.id === id)) {
             return
           }
-          let newTagArr = this.tags.map(item => {
-            return item.id
+          let newTagArr = self.tags.map(item => {
+            return item._id
           })
           newTagArr.push(id)
-          return service.modifyDraftTags(this.currentPostId, newTagArr).then(res => {
+          return service.modifyDraftTags(self.currentPostId, newTagArr).then(res => {
             if (res.success) {
-              this.tags = res.data.tags
-              this.postTagsModify(res.data.lastEditTime)
+              self.tags = res.data.tags
+              self.postTagsModify(res.data.lastEditTime)
             }
           }).catch(err => {
             if (err) throw err
@@ -424,8 +428,8 @@
       deleteTag (id) {
         let newTagArr = []
         for (let i of this.tags) {
-          if (i.id !== id) {
-            newTagArr.push(i.id)
+          if (i._id !== id) {
+            newTagArr.push(i._id)
           }
         }
         return service.modifyDraftTags(this.currentPostId, newTagArr).then(res => {
@@ -462,6 +466,11 @@
         this.tagInput = true
         this.tagNew = ''
         this.searchTags('')
+
+        this.$nextTick(() => {
+          // tag-input为获得焦点的状态
+          this.$els.tagInput.focus()
+        })
       },
       searchTags (val) {
         service.searchTagWithWord(val).then(res => {
