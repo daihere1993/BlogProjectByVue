@@ -3,6 +3,8 @@ import marked from 'marked'
 import { trim } from '../lib/utils'
 
 function date (val) {
+  // 数据库中返回的是UTC时间, 得转化成本地时间
+  val = new Date(val)
   return mo2js.date.format(val, 'YYYY-MM-DD HH:mm:ss')
 }
 

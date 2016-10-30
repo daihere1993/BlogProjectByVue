@@ -18,15 +18,15 @@ app.post('/api/publications', create)
         res.status(400).send({ error: '文章内容不能为空' })
       }
       if (draft.article !== null) {
-        draft.draftPublished = true;
-        draft.lastEditTime = new Date();
-        const articleOption = draft.toObject();
-        delete articleOption._id;
-        delete articleOption.draftPublished;
-        delete articleOption.article;
-        delete articleOption.createTime;
+        draft.draftPublished = true
+        draft.lastEditTime = new Date()
+        const articleOption = draft.toObject()
+        delete articleOption._id
+        delete articleOption.draftPublished
+        delete articleOption.article
+        delete articleOption.createTime
         draft.save().catch(err => {
-          U.logger.error(err);
+          U.logger.error(err)
           throw(500,'内部错误')
         })
         let article = yield Article.findByIdAndUpdate(draft.article,{$set:articleOption},{new:true})
