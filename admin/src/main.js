@@ -3,7 +3,7 @@ import Vue from 'vue'
 import MessageBox from 'vue-msgbox'
 import adminComponent from './components/Admin.vue'
 import { router } from './router.js'
-import md2Text from './filters/md2Text'
+import md2Text from './filters/md2text'
 
 require('font-awesome/css/font-awesome.min.css')
 
