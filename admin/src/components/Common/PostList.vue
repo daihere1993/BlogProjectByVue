@@ -3,7 +3,7 @@
     <li class="post-list-item" v-for="post in postList" @click="focus($index)">
       <article class="post-thumb" :class="[post['draftPublished']?'published':post['article']?'updated':'',{'active':post['_id'] === currentPostId}]">
         <h3 class="post-title"><a href="javascript:;">{{post['title']}}</a></h3>
-        <h6 class="post-time">{{post['lastEditTime']}}</h6>
+        <h6 class="post-time">{{post['lastEditTime'] | date}}</h6>
         <p class="post-content" v-text="post['excerpt'] | md2Text">
         </p>
       </article>
