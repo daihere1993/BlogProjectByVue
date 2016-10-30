@@ -3,7 +3,8 @@
     <nav-aside>
     </nav-aside>
     <section class="post-list-column">
-      <h3 class="page-title"><i class="icon-wenzhang iconfont"></i> 文章列表  <i class="iconfont icon-jiahao post-add" @click="createPost"></i></h3>
+      <h3 class="page-title"><i class="icon-wenzhang iconfont"></i> 文章列表  
+      <i class="iconfont icon-jiahao post-add" @click="createPost"></i></h3>
       <post-list></post-list>
     </section>
     <div class="post-edit">

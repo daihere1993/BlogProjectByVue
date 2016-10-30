@@ -73,7 +73,7 @@ const mutations = {
   },
   [POST_DELETE] (state) {
     if (state.postSaved && state.postTitleSaved) {
-      state.all.splice(state.currentPostIndex,1)
+      state.all.splice(state.currentPostIndex, 1)
       if (state.all.length) {
         state.currentPostIndex = 0
         state.currentPostId = state.all[0]._id
