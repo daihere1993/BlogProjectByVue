@@ -5,12 +5,8 @@
   "author": "daihere <daihere1993@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "unit": "karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "build-admin": "node admin/build/build.js",
+    "build-client": "node client/build/build.js",
     "dev-admin": "node admin/build/dev-server.js",
     "dev-client": "node client/build/dev-server.js",
     "dev-server": "NODE_ENV=development DEBUG=blog supervisor --harmony server/app.js"
