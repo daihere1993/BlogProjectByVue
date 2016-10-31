@@ -9,7 +9,7 @@
     "build-client": "node client/build/build.js",
     "dev-admin": "node admin/build/dev-server.js",
     "dev-client": "node client/build/dev-server.js",
-    "dev-server": "NODE_ENV=development DEBUG=blog supervisor --harmony server/app.js"
+    "dev-server": "cross-env NODE_ENV=development DEBUG=blog supervisor --harmony server/app.js"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
@@ -50,6 +50,7 @@
     "chai": "^3.5.0",
     "chromedriver": "^2.21.2",
     "connect-history-api-fallback": "^1.1.0",
+    "cross-env": "^3.1.3",
     "cross-spawn": "^2.1.5",
     "css-loader": "^0.23.0",
     "eslint": "^2.10.2",
