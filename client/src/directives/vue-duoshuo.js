@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/9/25.
- */
 import Vue from 'vue'
 export default Vue.directive('duoshuo', {
   bind() {

@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/7/30.
- */
 import * as types from '../mutation_types'
 import service from '../../services/posts/index'
 export const getAllPost = ({ dispatch }, tags) => {

@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/7/30.
- */
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import createLogger from 'vuex/logger'

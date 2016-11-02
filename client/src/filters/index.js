@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/9/20.
- */
 import marked from 'marked'
 import highlight from 'highlight.js/lib/highlight'
 const languages = ["cpp", "xml", "bash", "coffeescript", "css", "markdown", "http", "java", "javascript", "json", "less", "makefile", "nginx", "php", "python", "scss", "sql", "stylus"];

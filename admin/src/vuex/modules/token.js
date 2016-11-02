@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/9/20.
- */
 import {
   TOKEN_CREATE,
   TOKEN_DELETE

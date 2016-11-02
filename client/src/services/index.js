@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/9/7.
- */
 /* 封装fetch */
 function parseResponse (response) {
   return Promise.all([response.status,response.statusText, response.json()])

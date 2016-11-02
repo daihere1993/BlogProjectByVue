@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/9/20.
- */
 import * as types from '../mutation_types'
 import service from '../../services/login/index'
 import {router} from '../../router.js'

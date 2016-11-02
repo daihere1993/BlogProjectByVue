@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/7/30.
- */
 export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS'
 export const POST_FOCUS = 'POST_FOCUS'
 export const POST_EDIT = 'POST_EDIT'

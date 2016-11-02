@@ -1,6 +1,3 @@
-/**
- * Created by chuck7 on 16/9/7.
- */
 /* 封装fetch */
 import store from '../vuex/store'
 import { deleteToken } from '../vuex/actions/token'
