@@ -8,7 +8,6 @@ import { date, md2text } from './filters'
 require('font-awesome/css/font-awesome.min.css')
 
 window.alert = MessageBox
-window.alert = MessageBox
 Vue.filter('md2Text', md2text)
 Vue.filter('date', date)
 router.start(adminComponent, '#app')
