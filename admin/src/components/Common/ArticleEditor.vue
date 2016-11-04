@@ -448,7 +448,7 @@
           return
         }
         this.publishPost().then(() => {
-          window.alert('发布成功')
+          window.alert({title: '信息', message: '发布成功', type: 'success'})
         }).catch(err => {
           window.alert(err.error_message && err.error_message.error + '' || '网络错误,保存失败')
         })
