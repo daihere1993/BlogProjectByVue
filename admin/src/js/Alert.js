@@ -67,10 +67,14 @@ Alert = function (options) {
       options.placement = arguments[2]
     }
   }
-  
+
   showWidget({
     options: merge({}, defaults, options)
   })
+}
+
+Alert.set = function (key, value) {
+  defaults[key] = value
 }
 
 export default Alert
