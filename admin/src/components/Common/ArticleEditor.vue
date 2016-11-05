@@ -271,7 +271,7 @@
       this.savePostTitle()
     }).catch(err => {
       if (err) throw err
-      window.alert('网络错误,标题保存失败')
+      window.alert('网络错误,标题保存失败', 'warning')
     })
   }, 500)
   let smde
@@ -307,7 +307,7 @@
           }
         }).catch(err => {
           if (err) throw err
-          window.alert('网络错误!文档保存失败!请自行保存文档!')
+          window.alert('网络错误!文档保存失败!请自行保存文档!', 'warning')
         })
       }, 1000, false)
       smde.codemirror.on('change', () => {
@@ -333,7 +333,7 @@
           }
         }).catch(err => {
           if (err) throw err
-          window.alert('网络错误,获取文章失败')
+          window.alert('网络错误,获取文章失败', 'warning')
         })
       }
     },
@@ -379,7 +379,7 @@
             }
           }).catch(err => {
             if (err) throw err
-            window.alert('网络错误,获取文章失败')
+            window.alert('网络错误,获取文章失败', 'warning')
           })
         }
       },
@@ -418,11 +418,11 @@
             }
           }).catch(err => {
             if (err) throw err
-            window.alert('网络错误,增加标签失败')
+            window.alert('网络错误,增加标签失败', 'warning')
           })
         }).catch(err => {
           if (err) throw err
-          window.alert('网络错误,增加标签失败')
+          window.alert('网络错误,增加标签失败', 'warning')
         })
       },
       deleteTag (id) {
@@ -439,18 +439,18 @@
           }
         }).catch(err => {
           if (err) throw err
-          window.alert('网络错误,增加标签失败')
+          window.alert('网络错误,增加标签失败', 'warning')
         })
       },
       publish () {
         if (!this.postSaved || !this.postTitleSaved) {
-          window.alert('当前文章正在保存中,请稍后重试')
+          window.alert('当前文章正在保存中,请稍后重试', 'warning')
           return
         }
         this.publishPost().then(() => {
           window.alert('发布成功')
         }).catch(err => {
-          window.alert(err.error_message && err.error_message.error + '' || '网络错误,保存失败')
+          window.alert(err.error_message && err.error_message.error + '' || '网络错误,保存失败', 'warning')
         })
       },
       updateTitle (e) {
