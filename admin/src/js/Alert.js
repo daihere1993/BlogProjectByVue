@@ -1,7 +1,7 @@
 const defaults = {
-  title: '标题为定义',
-  message: '显示信息为定义',
-  type: ''
+  message: '',
+  type: 'success',
+  placement: 'top'
 }
 
 import Vue from 'vue'
@@ -53,9 +53,21 @@ function initInstance () {
 }
 
 /**
- * options { title, message, type }
+ * options { message, type, placement }
  */
 Alert = function (options) {
+  if (typeof options === 'string') {
+    options = {
+      message: options
+    }
+    if (arguments[1]) {
+      options.type = arguments[1]
+    }
+    if (arguments[2]) {
+      options.placement = arguments[2]
+    }
+  }
+  
   showWidget({
     options: merge({}, defaults, options)
   })
