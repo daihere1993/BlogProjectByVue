@@ -16,7 +16,13 @@
     <button v-show="visible" type="button" class="close" @click="visible = false">
       <span>&times;</span>
     </button>
-    <span class="fa fa-check-circle alert-icon-float-left"></span>
+    <span 
+      v-bind:class="{
+        'fa': true,
+        'alert-icon': true,
+        'fa-check-circle': (type === 'success'),
+        'fa-info-circle': (type !== 'success')
+      }"></span>
     <strong class="message">{{ message }}</strong>
   </div>
 </template>
@@ -59,7 +65,7 @@
 </script>
 
 <style lang="stylus">
-  .alert-icon-float-left 
+  .alert-icon 
     font-size 32px !important
     float left
     margin-right 10px
