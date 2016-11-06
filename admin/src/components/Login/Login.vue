@@ -7,7 +7,7 @@
       <div class="flash-bar danger" v-show="loginErr">登录失败 {{loginErrMsg}}</div>
       <section class="login-box">
         <div class="login-header">
-          <h3>
+          <h3 style="margin: 0px">
             博客后台登录
           </h3>
         </div>
@@ -67,7 +67,7 @@
   .center-box
     max-width 400px
     margin 0 auto
-    padding 32px 15px
+    padding 20px 15px 15px 15px
     .login-box
       background #fafafa
       border-radius 10px
@@ -138,10 +138,10 @@
     background-color #fff
     outline 0
     &.top
-      border-radius 5px 5px 0 0
-      margin-bottom 0
+      border-radius 5px
+      margin-top 20px
     &.bottom
-      border-radius 0 0 5px 5px
-      border-top 0
+      border-radius 5px
+      margin-top 20px
       margin-bottom 20px
 </style>

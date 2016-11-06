@@ -3,8 +3,10 @@
     <nav-aside>
     </nav-aside>
     <section class="post-list-column">
-      <h3 class="page-title"><i class="icon-wenzhang iconfont"></i> 文章列表  
-      <i class="iconfont icon-jiahao post-add" @click="createPost"></i></h3>
+      <h3 class="page-title">
+        <i class="fa fa-file-text"></i> 文章列表  
+        <i class="fa fa-plus post-add" @click="createPost"></i>
+      </h3>
       <post-list></post-list>
     </section>
     <div class="post-edit">
@@ -23,6 +25,7 @@
     border-right 1px solid $border
     height 100%
     width 300px
+    font-size 20px
   .post-add
     cursor pointer
     float right
@@ -30,8 +33,10 @@
     margin-top 2px
   .page-title
     color $light
-    padding-left 25px
+    padding 10px 0px 10px 25px
     font-weight 400
+    margin 0
+    font-size 20px
   .post-edit
     overflow auto
     height 100%
