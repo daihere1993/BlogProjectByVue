@@ -5,8 +5,10 @@
     </div>
     <div class="clearfix">
       <div class="half-container">
-        <i class="icon-biaoqian iconfont" style="margin-right:5px"></i>
-        <span class="tag" v-for="tag in tags">{{tag['name']}} <i class="icon-chacha iconfont delete-tag" @click="deleteTag(tag._id)"></i></span>
+        <i class="fa fa-tags" style="margin-right:5px"></i>
+        <span class="tag" v-for="tag in tags">{{tag['name']}}
+          <i class="fa fa-times-circle article-editor-icon delete-tag" @click="deleteTag(tag._id)"></i>
+        </span>
         <div class="tag active">
           <span v-show="!tagInput" @click="addTag()" style="cursor: pointer" >+</span>
           <input type="text" class="tag-input" v-show="tagInput" v-model="tagNew" placeholder="使用回车键提交" @keyup.13="submitTag" @keyup.esc="tagInput = false" v-el:tag-input>
@@ -51,12 +53,12 @@
     border-bottom 2px solid $light
     margin-top 5px
     margin-right 20px
-    .iconfont
+    .article-editor-icon
       display none
     &:hover
       color $green
       border-bottom 2px solid $green
-      .iconfont
+      .article-editor-icon
         display inline
         cursor: pointer
     &.active

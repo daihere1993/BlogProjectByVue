@@ -3,12 +3,18 @@
     <nav-aside>
     </nav-aside>
     <section class="post-list-column">
-      <h3 class="page-title" style="margin-bottom:0" v-if="null === tagActive"><i class="icon-biaoqian iconfont"></i> 根据标签搜索文章</h3>
+      <h3 class="page-title" style="margin-bottom:0" v-if="null === tagActive">
+        <i class="fa fa-tags"></i> 根据标签搜索文章
+      </h3>
       <ul class="clearfix reset-list tag-list" v-if="null !== tagActive">
-        <li class="tag active"><span v-show="!tagActive['editing']">{{tagActive['name']}}</span> <i class="icon-chacha iconfont" v-show="!tagActive['editing']" @click="blurTag()"></i> <i class="icon-edit iconfont" @click="modifyTag(tagActive)" v-show="!tagActive['editing']"></i> <i class="icon-shanchu iconfont" style="vertical-align: 1px;" @click="deleteTag(tagActive)" v-show="!tagActive['editing']"></i> <input type="text" class="tag-input" v-if="tagActive['editing']" v-model="tagActive['newName']" placeholder="使用回车键提交" @keyup.13="saveTag(tagActive)"></li>
+        <li class="tag active">
+          <span v-show="!tagActive['editing']">{{tagActive['name']}}</span>
+        </li>
       </ul>
       <ul class="clearfix reset-list tag-list" v-show="(tags.length !== 1 || tagActive == null)">
-        <li class="tag" v-for="tag in tags"  v-show="tag !== tagActive"> <span @click="searchTag(tag)" v-show="!tag['editing']">{{tag['name']}}</span> </li>
+        <li class="tag" v-for="tag in tags"  v-show="tag !== tagActive">
+          <span @click="searchTag(tag)" v-show="!tag['editing']">{{tag['name']}}</span>
+        </li>
       </ul>
       <post-list></post-list>
     </section>
@@ -24,6 +30,8 @@
     margin 0 25px
     &+&
       border-top 1px solid $border
+    & span
+      cursor pointer
 </style>
 <script>
   import NavAside from '../Common/NavAside.vue'
@@ -93,17 +101,6 @@
             window.alert('网络错误,修改标签失败')
           })
         }
-      },
-      deleteTag (tag) {
-        service.deleteTag(tag.id).then(res => {
-          if (res.success) {
-            if (this.tagActive === tag) {
-              this.getAllPost()
-              this.tagActive = null
-            }
-            this.tags.$remove(tag)
-          }
-        })
       },
       blurTag () {
         this.tagActive = null
