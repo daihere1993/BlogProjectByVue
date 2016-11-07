@@ -263,23 +263,23 @@
           content 'CSS'
 </style>
 <script>
-  import { 
-    editPost, 
-    savePost, 
-    editPostTitle, 
-    savePostTitle, 
-    deletePost, 
-    publishPost, 
-    submitPostTitle, 
-    submitPostExcerpt, 
-    postTagsModify 
+  import {
+    editPost,
+    savePost,
+    editPostTitle,
+    savePostTitle,
+    deletePost,
+    publishPost,
+    submitPostTitle,
+    submitPostExcerpt,
+    postTagsModify
   } from '../../vuex/actions/post'
-  import { 
-    postSaved, 
-    postTitle, 
-    postTitleSaved, 
-    currentPostId, 
-    articleIdOfPost 
+  import {
+    postSaved,
+    postTitle,
+    postTitleSaved,
+    currentPostId,
+    articleIdOfPost
   } from '../../vuex/getters/post'
   import service from '../../services/posts/index'
   import SimpleMDE from 'simplemde/dist/simplemde.min.js'
