@@ -34,6 +34,7 @@
     "thunkify": "^2.1.2",
     "validator": "^6.0.0",
     "vue": "^1.0.21",
+    "vue-alert-osd": "^0.1.0",
     "vue-moment": "^2.0.1",
     "vue-msgbox": "^0.2.11",
     "vuex": "^1.0.0-rc.2",
