@@ -5,7 +5,7 @@
       <header>
         <h2><a v-link="'/posts/'+post['_id']">{{post['title']}}</a></h2>
         <h4>
-          {{post['createTime']}}
+          {{post['createTime'] | date}}
         </h4>
       </header>
 
