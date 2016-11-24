@@ -1,20 +1,17 @@
 <template>
   <div class="post-list">
     <!--这个div用来避免这个组件成为片段实例-->
-    <article v-for="post in posts">
+    <article class="article" v-for="post in posts">
       <header>
-        <h2><a v-link="'/posts/'+post['_id']">{{post['title']}}</a></h2>
-        <h4>
-          {{post['createTime'] | date}}
-        </h4>
+        <h2 class="article-title"><a v-link="'/posts/'+post['_id']">{{post['title']}}</a></h2>
       </header>
-
-      <p v-html="post['excerpt'] | markdown">
-
-      </p>
-
+      <div class="article-info">
+        发布于:
+        <span class="article-date">{{post['createTime'] | date}}</span>
+      </div>
+      <p v-html="post['excerpt'] | markdown"></p>
       <footer>
-        <a v-link="'/posts/'+post['_id']">... 详情</a>
+        <a v-link="'/posts/'+post['_id']">阅读全文</a>
       </footer>
 
     </article>
@@ -25,6 +22,15 @@
   </div>
 
 </template>
+
+<style lang="stylus">
+  .article
+    border-bottom 1px solid #e8e8e8
+    padding 0 5% 4%
+  .article-info
+    color #999
+</style>
+
 <script>
   import Pagination from './common/Pagination.vue'
   import service from '../services/postlist/index'

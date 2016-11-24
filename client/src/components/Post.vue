@@ -3,47 +3,24 @@
     <!--这个div用来避免这个组件成为片段实例-->
     <article class="post">
       <header id="header">
-        <h1>{{title}}</h1>
-        <h4>
-          {{createTime}}
-        </h4>
+        <h1 class="article-title">{{title}}</h1>
       </header>
-      <p v-html="content | markdown">
-      </p>
+      <div class="article-info">
+        发布于
+        <span class="article-date">{{ createTime | date }}</span>
+      </div>
+      <div class="article-content" v-html="content | markdown"></div>
       <div class="fix" style="margin: 20px 0;">
         <span class="tag" v-for="tag in tags"><a href="" class="tag-link active">{{tag.name}}</a></span>
       </div>
       <!-- 多说评论框 start -->
-      <article id="duoshuo-comment" v-duoshuo="duoshuoOption">
-      </article>
+      <article id="duoshuo-comment" v-duoshuo="duoshuoOption"></article>
       <!-- 多说评论框 end -->
     </article>
     <pagination :next="nextArticle !== null" :next-link="nextArticle?'/posts/'+nextArticle._id:''" :next-word="nextArticle&&nextArticle.title" :prev="prevArticle !== null" :prev-link="prevArticle?'/posts/'+prevArticle._id:''" :prev-word="prevArticle&&prevArticle.title" ></pagination>
   </div>
 </template>
-<style lang="stylus">
-  @import "../stylus/_settings.styl"
 
-  .tag
-    float left
-    margin-bottom 5px
-    a.tag-link
-      color $light
-      border-bottom 2px solid $light
-      &:hover
-        color $green
-        border-bottom 2px solid $green
-      &.active
-        color $green
-        border-bottom 2px solid $green
-    &+&
-      margin-left 20px
-  @media screen and (max-width: 720px)
-    .tag
-      margin: 0 5px 5px;
-      &+&
-        margin-left 5px
-</style>
 <script>
   import Pagination from './common/Pagination.vue'
   import service from '../services/post/index'
@@ -102,3 +79,29 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  @import "../stylus/_settings.styl"
+
+  .tag
+    float left
+    margin-bottom 5px
+    a.tag-link
+      color $light
+      border-bottom 2px solid $light
+      &:hover
+        color $green
+        border-bottom 2px solid $green
+      &.active
+        color $green
+        border-bottom 2px solid $green
+    &+&
+      margin-left 20px
+  @media screen and (max-width: 720px)
+    .tag
+      margin: 0 5px 5px;
+      &+&
+        margin-left 5px
+  .article-content
+    margin 4em 0 1em
+</style>

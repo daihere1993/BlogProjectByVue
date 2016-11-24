@@ -8,9 +8,7 @@
         transition-mode="out-in">
       </router-view>
     </main>
-    <footer class="copyright">
-      
-    </footer>
+    <footer class="copyright"></footer>
   </div>
 </template>
 
@@ -78,6 +76,7 @@
     margin 1.2em 0
   p
     word-spacing 0.05em
+    font-size: $article-font-size
   p, ul, ol
     line-height 1.6em
   ul, ol
@@ -171,7 +170,6 @@
     margin-left 0
   .post-list
     padding 1em 0 2em
-    border-bottom 1px solid $border
   .post
     padding 1em 0 2em
     border-bottom 1px solid $border
