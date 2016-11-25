@@ -50,6 +50,7 @@
         return service.getPost(to.params.postId).then(res => {
           if (res.success === true) {
             if (res.data !== null) {
+              res.data.id = res.data._id
               delete res.data._id
               delete res.data.comments
               delete res.data.hidden
