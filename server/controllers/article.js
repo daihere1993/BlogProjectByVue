@@ -12,7 +12,7 @@ module.exports = ({app}) => {
        * */
       let skip
       const limit = parseInt(req.query.limit), articleList = [],
-        page = req.query.page
+        page = req.query.page, sort = req.query.sort
       
       if (page === 0) {
         skip = 0
@@ -23,6 +23,7 @@ module.exports = ({app}) => {
       let articles = yield Article.find({hidden: false})
         .populate('tag')
         .limit(limit).skip(skip)
+        .sort(sort)
 
       if (articles.length) {
         articles.forEach((article, index) => {

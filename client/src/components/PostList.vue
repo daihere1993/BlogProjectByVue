@@ -47,14 +47,9 @@
       }
     },
     ready () {
-      service.getPostList({page: this.curPage, limit}).then((res) => {
+      service.getPostList({page: this.curPage, limit, sort: {'createTime': -1}}).then((res) => {
         if (res.success === true) {
           this.posts = res.data.articles
-          // 后台返回的时间为UTC格式的时间，得转化成本地时间
-          this.posts.forEach((post) => {
-            post.createTime = new Date(post.createTime)
-          })
-          this.posts.sort((post1, post2) => { return post2.createTime - post1.createTime })
           this.totalPage = Math.ceil(res.data.total / limit)
         }
       }).catch(err => {

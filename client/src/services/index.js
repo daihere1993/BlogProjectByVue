@@ -14,6 +14,23 @@ function checkStatus ([status,statusText,data]) {
   }
 }
 
+function _formatterParamToString (param, preKey) {
+  var query = [], key;
+  for (key in param) {
+    if (param[key] instanceof Object) {
+      console.log(_formatterParamToString(param[key], key));
+      query = query.concat(_formatterParamToString(param[key], key))
+    } else {
+      if (preKey) {
+        query.push(`${preKey}[${key}]=${encodeURIComponent(param[key])}`)  
+      } else {
+        query.push(`${key}=${encodeURIComponent(param[key])}`)
+      }
+    }
+  }
+  return query
+}
+
 
 
 export default{
@@ -21,10 +38,13 @@ export default{
 
     let reqHeaders = new Headers()
     reqHeaders.append('Accept', 'application/json')
-    var query = []
-    Object.keys(param).forEach((item) => {
-      query.push(`${item}=${encodeURIComponent(param[item])}`)
-    })
+    // console.log(param)
+    // Object.keys(param).forEach((item, a) => {
+    //   console.log(item)
+    //   console.log(a)
+    //   query.push(`${item}=${encodeURIComponent(param[item])}`)
+    // })
+    var query = _formatterParamToString(param)
     var params = query.length ? '?' + query.join('&') : ''  // fixme
     url = host + url + params
     console.log(host, params)
