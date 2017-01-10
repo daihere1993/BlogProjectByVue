@@ -33,11 +33,10 @@
     "stylus-loader": "^2.3.1",
     "thunkify": "^2.1.2",
     "validator": "^6.0.0",
-    "vue": "^1.0.21",
+    "vue": "^2.1.8",
     "vue-alert-osd": "^0.3.0",
-    "vue-moment": "^2.0.1",
     "vue-msgbox": "^0.2.11",
-    "vuex": "^1.0.0-rc.2",
+    "vuex": "^2.1.1",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
@@ -85,8 +84,7 @@
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.3.0",
-    "vue-resource": "^1.0.2",
-    "vue-router": "^0.7.13",
+    "vue-router": "^2.1.1",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
