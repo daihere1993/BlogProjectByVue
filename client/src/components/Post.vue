@@ -9,7 +9,7 @@
         发布于
         <span class="article-date">{{ createTime | date }}</span>
       </div>
-      <div class="article-content" v-html="content | markdown"></div>
+      <div class="article-content" v-html="parseHtml(content)"></div>
       <div class="fix" style="margin: 20px 0;">
         <span class="tag" v-for="tag in tags"><a href="" class="tag-link active">{{tag.name}}</a></span>
       </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import { markdown } from '../filters/index'
   import Pagination from './common/Pagination.vue'
   import service from '../services/post/index'
   import '../directives/vue-duoshuo'
@@ -44,22 +45,24 @@
         'duoshuoOption': {}
       }
     },
-    route: {
-      data ({to}) {
+    methods: {
+      parseHtml (html) {
+        return markdown(html)
+      },
+      fetchData () {
         var self = this
-        return service.getPost(to.params.postId).then(res => {
+        return service.getPost(this.$route.params.postId).then(res => {
           if (res.success === true) {
             if (res.data !== null) {
               res.data.id = res.data._id
-              delete res.data._id
-              delete res.data.comments
-              delete res.data.hidden
+              for (var key in self._data) {
+                self[key] = res.data[key]
+              }
               let duoshuoOption = {
-                id: res.data.id,
-                title: res.data.title
+                id: self.id,
+                title: self.title
               }
               self.duoshuoOption = duoshuoOption
-              return res.data
             } else {
               self.title = '404 not found'
               self.createTime = ''
@@ -77,6 +80,9 @@
           alert('网络错误,请刷新重试')
         })
       }
+    },
+    created () {
+      this.fetchData()
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="guide-links fix">
-    <span v-if="prev">← <a v-link="prevLink">{{prevWord}}</a></span>
-    <span class="r" v-if="next"><a v-link="nextLink">{{nextWord}}</a> →</span>
+    <span v-if="prev">← <router-link to="prevLink">{{prevWord}}</router-link></span>
+    <span class="r" v-if="next"><router-link to="nextLink">{{nextWord}}</router-link> →</span>
   </div>
 </template>
 <style lang="stylus">
