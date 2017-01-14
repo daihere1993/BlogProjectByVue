@@ -14,7 +14,12 @@
       </h3>
       <ul>
         <li v-for="article in item['articles']">
-          <h4><a v-link="'/posts/'+article['id']">{{article['title']}}</a> <span>{{article['createTime']}}</span></h4>
+          <h4>
+            <router-link to="'/posts/'+article['id']">
+              {{article['title']}}
+            </router-link> 
+            <span>{{article['createTime']}}</span>
+          </h4>
         </li>
       </ul>
     </section>

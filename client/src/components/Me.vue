@@ -1,12 +1,13 @@
 <template>
     <div>
       <article class="post">
-        <p v-html="content | markdown">
+        <p v-html="parseHtml(content)">
         </p>
       </article>
     </div>
 </template>
 <script>
+  import { markdown } from '../filters/index'
   import service from '../services/me/index'
   export default{
     data () {
@@ -24,6 +25,11 @@
           console.log(err)
           alert('获取内容失败')
         })
+      }
+    },
+    methods: {
+      parseHtml (html) {
+        return markdown(html)
       }
     }
   }
