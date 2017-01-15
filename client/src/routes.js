@@ -7,7 +7,7 @@ const routes = [
   { path: '/posts', component: List },
   { path: '/post/:postId', component: Post },
   { path: '/tags', component: Tag },
-  { path: '/me', components: Me }
+  { path: '/me', component: Me }
 ]
 
 export default routes

@@ -38,8 +38,11 @@
         tags: []
       }
     },
-    route: {
-      data () {
+    created () {
+      this.fetchData()
+    },
+    methods: {
+      fetchData () {
         this.tags = []
         this.tagAndItsArticles = []
         service.getAllTags().then(res => {
@@ -57,9 +60,7 @@
             })
           }
         })
-      }
-    },
-    methods: {
+      },
       focus (id) {
         let dom = document.getElementById(id)
         window.scrollTo(0, dom.offsetTop)

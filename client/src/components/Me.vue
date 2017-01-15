@@ -15,9 +15,12 @@
         content: ''
       }
     },
-    route: {
-      data () {
-        return service.getAboutMe().then(res => {
+    created () {
+      this.fetchData()
+    },
+    methods: {
+      fetchData () {
+        service.getAboutMe().then(res => {
           if (res.success) {
             this.content = res.data.content
           }
@@ -25,9 +28,7 @@
           console.log(err)
           alert('获取内容失败')
         })
-      }
-    },
-    methods: {
+      },
       parseHtml (html) {
         return markdown(html)
       }
