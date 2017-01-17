@@ -1,10 +1,10 @@
 <template>
   <ul class="post-list reset-list">
-    <li class="post-list-item" v-for="post in postList" @click="focus($index)">
+    <li class="post-list-item" v-for="(post, index) in postList" @click="focus(index)">
       <article class="post-thumb" :class="[post['draftPublished']?'published':post['article']?'updated':'',{'active':post['_id'] === currentPostId}]">
         <h3 class="post-title"><a href="javascript:;">{{post['title']}}</a></h3>
         <h6 class="post-time">{{post['lastEditTime'] | date}}</h6>
-        <p class="post-content" v-text="post['excerpt'] | md2Text">
+        <p class="post-content" v-text="parseMarkdownString(post['excerpt'])">
         </p>
       </article>
     </li>
@@ -58,22 +58,23 @@
     text-overflow ellipsis
 </style>
 <script>
-  import {focusOnPost} from '../../vuex/actions/post'
-  import {currentPostId, currentPostIndex, postSaved, postList, postTitleSaved} from '../../vuex/getters/post'
+  import { mapActions, mapGetters } from 'vuex'
+  import { md2text } from '../../filters'
   export default {
-    vuex: {
-      getters: {
-        currentPostId,
-        currentPostIndex,
-        postSaved,
-        postList,
-        postTitleSaved
-      },
-      actions: {
-        focusOnPost
-      }
+    name: 'post-list',
+    computed: {
+      ...mapGetters([
+        'currentPostId',
+        'currentPostIndex',
+        'postSaved',
+        'postList',
+        'postTitleSaved'
+      ])
     },
     methods: {
+      parseMarkdownString (str) {
+        return md2text(str)
+      },
       focus (index) {
         if (!this.postSaved || !this.postTitleSaved) {
           window.alert('当前文章正在保存中,请稍后重试')
@@ -82,7 +83,10 @@
         if (index !== this.currentPostIndex) {
           this.focusOnPost(index)
         }
-      }
+      },
+      ...mapActions([
+        'focusOnPost'
+      ])
     }
 
   }

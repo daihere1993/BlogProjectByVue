@@ -34,12 +34,11 @@
       cursor pointer
 </style>
 <script>
+  import { mapActions, mapGetters } from 'vuex'
   import NavAside from '../Common/NavAside.vue'
   import ArticleEditor from '../Common/ArticleEditor.vue'
   import PostList from '../Common/PostList.vue'
   import service from '../../services/tags/index'
-  import {getAllPost} from '../../vuex/actions/post'
-  import {currentPostId} from '../../vuex/getters/post'
   export default {
     components: {
       NavAside,
@@ -52,15 +51,12 @@
         tags: []
       }
     },
-    vuex: {
-      actions: {
-        getAllPost
-      },
-      getters: {
-        currentPostId
-      }
+    computed: {
+      ...mapGetters([
+        'currentPostId'
+      ])
     },
-    ready () {
+    mounted () {
       service.getAllTags().then(res => {
         if (res.success) {
           for (let i of res.data) {
@@ -105,7 +101,10 @@
       blurTag () {
         this.tagActive = null
         this.getAllPost()
-      }
+      },
+      ...mapActions([
+        'getAllPost'
+      ])
     }
   }
 </script>
