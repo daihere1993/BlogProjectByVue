@@ -2,6 +2,12 @@
 
 > A Vue.js project
 
+## 版本
+
+vue: 2.1.8
+vuex: 2.1.1
+vue-router: 2.1.1
+
 ## 运行
 
 ``` bash
@@ -24,4 +30,4 @@ npm run dev-admin
 
 ## 注
 
-	－ 目前的版本适合express和vue的初学者学习
+	- 目前的版本适合express和vue的初学者学习
