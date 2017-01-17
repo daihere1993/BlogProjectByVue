@@ -1,3 +1,7 @@
-export const token = ({ token }) => {
-  return token.token
+const getters = {
+  token: ({ token }) => {
+    return token
+  }
 }
+
+export default getters

@@ -4,19 +4,19 @@
     <nav class="aside-nav">
       <ul class="aside-nav-list">
         <li class="aside-nav-item">
-          <a class="aside-nav-button" v-link="{ path: '/posts', activeClass: 'active' }">
+          <router-link class="aside-nav-button" :to="{ path: '/posts', activeClass: 'active' }">
             <i class="fa fa-file-text nav-icon"></i>
-          </a>
+          </router-link>
         </li>
         <li class="aside-nav-item">
-          <a class="aside-nav-button" v-link="{ path: '/tags', activeClass: 'active' }">
+          <router-link class="aside-nav-button" :to="{ path: '/tags', activeClass: 'active' }">
             <i class="fa fa-tags nav-icon"></i>
-          </a>
+          </router-link>
         </li>
         <li class="aside-nav-item">
-          <a class="aside-nav-button" v-link="{ path: '/me', activeClass: 'active' }">
+          <router-link class="aside-nav-button" :to="{ path: '/me', activeClass: 'active' }">
             <i class="fa fa-user nav-icon"></i>
-          </a>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -84,11 +84,11 @@
     bottom 0
 </style>
 <script>
-  import { deleteToken } from '../../vuex/actions/token'
   export default{
-    vuex: {
-      actions: {
-        deleteToken
+    name: 'nav-aside',
+    methods: {
+      deleteToken () {
+        this.$store.dispatch('deleteToken', { router: this.$router })
       }
     }
   }

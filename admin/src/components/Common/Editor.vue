@@ -7,17 +7,17 @@
   import { marked } from '../../lib/utils'
   import SimpleMDE from 'simplemde/dist/simplemde.min.js'
   export default {
+    name: 'editor',
     data () {
       return {}
     },
     props: {
       content: {
         type: String,
-        required: true,
-        twoWay: true
+        required: true
       }
     },
-    ready () {
+    mounted () {
       this.smde = new SimpleMDE({
         initialValue: this.content,
         autoDownloadFontAwesome: false,

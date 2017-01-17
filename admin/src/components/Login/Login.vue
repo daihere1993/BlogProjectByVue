@@ -28,8 +28,6 @@
 </template>
 
 <script>
-  import { createToken } from '../../vuex/actions/token'
-  console.log(typeof createToken)
   import md5 from 'md5'
   export default {
     data: () => ({
@@ -40,16 +38,12 @@
     }),
     methods: {
       login () {
-        this.createToken(this.username, md5(this.password).toUpperCase()).catch((err) => {
-          console.log(err)
-          this.loginErrMsg = err.error_message.error
-          this.loginErr = true
+        const password = md5(this.password).toUpperCase()
+        this.$store.dispatch('createToken', {
+          username: this.username,
+          password: password,
+          router: this.$router
         })
-      }
-    },
-    vuex: {
-      actions: {
-        createToken
       }
     }
   }

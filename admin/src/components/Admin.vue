@@ -19,13 +19,8 @@
 
 <script>
   import store from '../vuex/store'
-  import {deleteToken} from '../vuex/actions/token'
   export default {
     store,
-    vuex: {
-      actions: {
-        deleteToken
-      }
-    }
+    name: 'admin'
   }
 </script>

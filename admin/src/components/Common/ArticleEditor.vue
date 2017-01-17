@@ -11,7 +11,7 @@
         </span>
         <div class="tag active">
           <span v-show="!tagInput" @click="addTag()" style="cursor: pointer" >+</span>
-          <input type="text" class="tag-input" v-show="tagInput" v-model="tagNew" placeholder="使用回车键提交" @keyup.13="submitTag" @keyup.esc="tagInput = false" v-el:tag-input>
+          <input type="text" class="tag-input" v-show="tagInput" v-model="tagNew" placeholder="使用回车键提交" @keyup.13="submitTag" @keyup.esc="tagInput = false" ref="tag-input">
           <ul class="search-list reset-list" v-if="tagInput" v-show="tagsToAdd.length">
             <li class="search-item" @click="submitTag(tag['name'])" style="cursor: pointer;" v-for="tag in tagsToAdd">{{tag['name']}}</li>
           </ul>
@@ -27,24 +27,7 @@
 </template>
 
 <script>
-  import {
-    editPost,
-    savePost,
-    editPostTitle,
-    savePostTitle,
-    deletePost,
-    publishPost,
-    submitPostTitle,
-    submitPostExcerpt,
-    postTagsModify
-  } from '../../vuex/actions/post'
-  import {
-    postSaved,
-    postTitle,
-    postTitleSaved,
-    currentPostId,
-    articleIdOfPost
-  } from '../../vuex/getters/post'
+  import { mapActions, mapGetters } from 'vuex'
   import service from '../../services/posts/index'
   import SimpleMDE from 'simplemde/dist/simplemde.min.js'
   import { _debounce, trim, marked } from '../../lib/utils'
@@ -58,6 +41,7 @@
   }, 500)
   let smde
   export default {
+    name: 'article-editor',
     data () {
       return {
         // 用以标识 是切换文章导致的codemirror的change事件还是 手工输入引起的change事件
@@ -70,7 +54,7 @@
         tagInput: false
       }
     },
-    ready () {
+    mounted () {
       smde = new SimpleMDE({
         autoDownloadFontAwesome: false,
         element: document.getElementById('editor'),
@@ -121,31 +105,16 @@
     },
     beforeDestroy () {
       smde.toTextArea()
-      let editor = document.getElementById('editor')
-      editor.outerHTML = editor.outerHTML
     },
-
-    vuex: {
-      getters: {
-        currentPostId,
-        postSaved,
-        postTitleSaved,
-        postTitle,
-        articleIdOfPost
-      },
-      actions: {
-        editPost,
-        savePost,
-        editPostTitle,
-        savePostTitle,
-        deletePost,
-        publishPost,
-        submitPostTitle,
-        submitPostExcerpt,
-        postTagsModify
-      }
+    computed: {
+      ...mapGetters([
+        'currentPostId',
+        'postSaved',
+        'postTitleSaved',
+        'postTitle',
+        'articleIdOfPost'
+      ])
     },
-
     watch: {
       currentPostId (val) {
         this.change = true
@@ -170,6 +139,17 @@
       }
     },
     methods: {
+      ...mapActions([
+        'editPost',
+        'savePost',
+        'editPostTitle',
+        'savePostTitle',
+        'deletePost',
+        'publishPost',
+        'submitPostTitle',
+        'submitPostExcerpt',
+        'postTagsModify'
+      ]),
       submitTag (val) {
         let self = this
 
@@ -251,7 +231,7 @@
 
         this.$nextTick(() => {
           // tag-input为获得焦点的状态
-          this.$els.tagInput.focus()
+          this.$refs.tagInput.focus()
         })
       },
       searchTags (val) {

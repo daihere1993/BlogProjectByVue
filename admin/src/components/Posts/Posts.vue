@@ -42,44 +42,28 @@
     height 100%
 </style>
 <script>
+  import { mapActions } from 'vuex'
   import NavAside from '../Common/NavAside.vue'
   import ArticleEditor from '../Common/ArticleEditor.vue'
   import PostList from '../Common/PostList.vue'
-  import { getAllPost, createPost } from '../../vuex/actions/post'
-  import { postSaved, postTitleSaved, currentPostId } from '../../vuex/getters/post'
   export default {
+    name: 'posts',
     data () {
       return {}
     },
-    route: {
-      data () {
-        this.getAllPost()
-      }
+    created () {
+      this.getAllPost()
     },
     components: {
       NavAside,
       ArticleEditor,
       PostList
     },
-    vuex: {
-      getters: {
-        postSaved,
-        postTitleSaved,
-        currentPostId
-      },
-      actions: {
-        getAllPost,
-        createPost
-      }
-    },
     methods: {
-      newPost () {
-        if (!this.postSaved || !this.postTitleSaved) {
-          window.alert('当前文章正在保存中,请稍后重试')
-        } else {
-          this.createPost()
-        }
-      }
+      ...mapActions([
+        'createPost',
+        'getAllPost'
+      ])
     }
   }
 </script>
