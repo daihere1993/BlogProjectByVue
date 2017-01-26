@@ -4,6 +4,7 @@ import Tag from 'components/Tag.vue'
 import Me from 'components/Me.vue'
 
 const routes = [
+  { path: '/', redirect: '/posts' },
   { path: '/posts', component: List },
   { path: '/post/:postId', component: Post },
   { path: '/tags', component: Tag },
