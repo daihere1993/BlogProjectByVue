@@ -67,7 +67,7 @@
         return markdown(html)
       },
       prevPage () {
-        service.getPostList({page: this.curPage - 1, limit}).then(res => {
+        service.getPostList({page: this.curPage - 1, limit, sort: {'createTime': -1}}).then(res => {
           this.curPage --
           if (res.success === true) {
             this.posts = res.data.articles
@@ -79,7 +79,7 @@
         })
       },
       nextPage () {
-        service.getPostList({page: this.curPage + 1, limit}).then(res => {
+        service.getPostList({page: this.curPage + 1, limit, sort: {'createTime': -1}}).then(res => {
           this.curPage++
           if (res.success === true) {
             this.posts = res.data.articles
