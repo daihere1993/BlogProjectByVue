@@ -23,7 +23,7 @@
 
 <script>
   import { markdown } from '../filters/index'
-  import Pagination from './common/Pagination.vue'
+  import Pagination from './common/pagination.vue'
   import service from '../services/post/index'
   import '../directives/vue-duoshuo'
   export default {
