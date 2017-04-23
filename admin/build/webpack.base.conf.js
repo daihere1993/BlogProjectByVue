@@ -2,15 +2,14 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-
+console.log(config.build.assetsPublicPath)
 module.exports = {
   entry: {
     app: './admin/src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: config.build.assetsPublicPath,
-    filename: '[name].js'
+    publicPath: config.build.assetsPublicPath
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
@@ -19,7 +18,8 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-      'vue': 'vue/dist/vue.js'
+      'vue': 'vue/dist/vue.js',
+      'simplemde': 'simplemde/dist/simplemde.min.js'
     }
   },
   resolveLoader: {
@@ -69,7 +69,8 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
-    ]
+    ],
+    noParse: [/simplemde/]
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')

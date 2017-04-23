@@ -6,8 +6,8 @@ import Alert from 'vue-alert-osd'
 import admin from './components/Admin.vue'
 import routes from './routes'
 import { date } from './filters'
-require('font-awesome/css/font-awesome.min.css')
-require('vue-alert-osd/lib/vue-alert-osd.css')
+import 'font-awesome/css/font-awesome.min.css'
+import 'vue-alert-osd/lib/vue-alert-osd.css'
 
 Vue.use(VueRouter)
 const router = new VueRouter({

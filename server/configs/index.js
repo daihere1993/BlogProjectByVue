@@ -3,7 +3,7 @@
 const path = require('path'),
   serverRoot = path.dirname(__dirname),
   root = path.resolve(serverRoot, '../'),
-  staticDir = path.join(root, 'static'),
+  staticDir = path.join(root, 'dist'),
   dev = require('./dev.config.js'),
   dist = require('./dist.config.js'),
   fs = require('fs'),

@@ -29,7 +29,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex'
   import service from '../../services/posts/index'
-  import SimpleMDE from 'simplemde/dist/simplemde.min.js'
+  import SimpleMDE from 'simplemde'
   import { _debounce, trim, marked } from '../../lib/utils'
   const updateTitleWithDebounce = _debounce(function (title) {
     this.submitPostTitle(title).then(() => {
