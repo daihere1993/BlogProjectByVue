@@ -35,7 +35,7 @@
 
 <script>
   import { markdown } from '../filters/index'
-  import Pagination from './common/Pagination.vue'
+  import Pagination from './common/pagination.vue'
   import service from '../services/postlist/index'
   const limit = 10
   export default {
