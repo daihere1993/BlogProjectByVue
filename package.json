@@ -34,7 +34,7 @@
     "thunkify": "^2.1.2",
     "validator": "^6.0.0",
     "vue": "^2.1.8",
-    "vue-alert-osd": "^0.3.0",
+    "vue-alert-osd": "^0.6.0",
     "vue-msgbox": "^0.2.11",
     "vuex": "^2.1.1",
     "whatwg-fetch": "^1.0.0"
