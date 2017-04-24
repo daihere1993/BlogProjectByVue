@@ -10,7 +10,7 @@
     "dev-admin": "node admin/build/dev-server.js",
     "dev-client": "node client/build/dev-server.js",
     "dev-server": "cross-env NODE_ENV=development DEBUG=blog supervisor --harmony server/app.js",
-    "server": "cross-env NODE_ENV=production DEBUG=blog --harmony server/app.js"
+    "server": "cross-env NODE_ENV=production DEBUG=blog supervisor --harmony server/app.js"
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
