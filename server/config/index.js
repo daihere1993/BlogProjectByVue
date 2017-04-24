@@ -5,7 +5,7 @@ const path = require('path'),
   root = path.resolve(serverRoot, '../'),
   staticDir = path.join(root, 'dist'),
   dev = require('./dev.config.js'),
-  dist = require('./dist.config.js'),
+  prod = require('./prod.config.js'),
   fs = require('fs'),
   _ = require('lodash')
 
@@ -48,9 +48,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // 生产环境
 if (process.env.NODE_ENV === 'production') {
-  if (fs.existsSync(__dirname + '/dist.js')) {
-    config = _.merge(config, dist)
-  }
+  config = _.merge(config, prod)
 }
 
 module.exports = config;

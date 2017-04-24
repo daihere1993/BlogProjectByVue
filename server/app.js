@@ -10,7 +10,7 @@ const express = require('express'),
  * U utils
  */
 global.M = {}
-global.C = require('./configs')
+global.C = require('./config')
 global.U = require('./utils')
 
 // 处理跨域
@@ -27,13 +27,16 @@ function corsConfig (req, res, next) {
     next()
   }
 }
-app.get('/', (req, res) => {
-  return res.sendFile(process.cwd() + '/dist/index.html');
-});
 
-app.get('/admin', (req, res) => {
-  return res.sendFile(process.cwd() + '/dist/admin.html');
-});
+if (global.C.env === 'production') {
+  app.get('/', (req, res) => {
+    return res.sendFile(process.cwd() + '/dist/index.html');
+  })
+
+  app.get('/admin', (req, res) => {
+    return res.sendFile(process.cwd() + '/dist/admin.html');
+  })
+}
 
 // 打印http记录
 app.use(morgan('dev'))

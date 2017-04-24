@@ -1,7 +1,7 @@
 'use strict'
 const Logger = require('mini-logger'),
   validator = require('validator'),
-  config = require('../configs'),
+  config = require('../config'),
   print = require('debug')('blog'),
   fs = require('fs'),
   co = require('co'),
