@@ -4,7 +4,7 @@ config = {
   NODE_ENV: '"production"',
   //填写生产环境时,该博客的访问地址
   index: '"http://localhost"',
-  api: '"https://justforlife:3000/api/"',
+  api: '"https://justforlife.cn:3000/api/"',
   duoshuoShortName: '"comment"'
 }
 if (process.env.NODE_ENV === 'production'){
