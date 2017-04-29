@@ -8,8 +8,7 @@ module.exports = {
     app: './client/src/main.js'
   },
   output: {
-    path: config.build.assetsRoot,
-    filename: '[name].js'
+    path: config.build.assetsRoot
   },
   resolve: {
     extensions: ['', '.js', '.vue'],

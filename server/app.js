@@ -28,15 +28,13 @@ function corsConfig (req, res, next) {
   }
 }
 
-if (global.C.env === 'production') {
-  app.get('/', (req, res) => {
-    return res.sendFile(process.cwd() + '/dist/index.html');
-  })
+app.get('/', (req, res) => {
+  return res.sendFile(process.cwd() + '/dist/index.html');
+})
 
-  app.get('/admin', (req, res) => {
-    return res.sendFile(process.cwd() + '/dist/admin.html');
-  })
-}
+app.get('/admin', (req, res) => {
+  return res.sendFile(process.cwd() + '/dist/admin.html');
+})
 
 // 打印http记录
 app.use(morgan('dev'))

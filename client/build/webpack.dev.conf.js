@@ -13,6 +13,7 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 module.exports = merge(baseWebpackConfig, {
   output: {
     publicPath: config.dev.assetsPublicPath,
+    filename: '[name].js'
   },
   module: {
     loaders: utils.styleLoaders()

@@ -9,7 +9,6 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: config.build.assetsPublicPath
   },
   resolve: {
     extensions: ['', '.js', '.vue'],

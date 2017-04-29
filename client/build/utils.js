@@ -23,9 +23,7 @@ exports.cssLoaders = function (options) {
     }).join('!')
 
     if (options.extract) {
-      return ExtractTextPlugin.extract('vue-style-loader', sourceLoader,{
-        publicPath:'../../'
-      })
+      return ExtractTextPlugin.extract('vue-style-loader', sourceLoader)
     } else {
       return ['vue-style-loader', sourceLoader].join('!')
     }
