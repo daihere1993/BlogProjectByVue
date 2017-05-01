@@ -20,6 +20,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.min.js',
+    }
+  },
   vue: {
     loaders: utils.cssLoaders({
       sourceMap: config.build.productionSourceMap,
