@@ -17,6 +17,9 @@ module.exports = merge(baseWebpackConfig, {
   module: {
     loaders: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
+  alias: {
+    'vue': 'vue/dist/vue.js'
+  },
   // eval-source-map is faster for development
   devtool: 'source-map',
   plugins: [
