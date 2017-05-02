@@ -5,7 +5,7 @@
 </template>
 <script>
   import { marked } from '../../lib/utils'
-  import SimpleMDE from 'simplemde/dist/simplemde.min.js'
+  import SimpleMDE from 'simplemde'
   export default {
     name: 'editor',
     data () {

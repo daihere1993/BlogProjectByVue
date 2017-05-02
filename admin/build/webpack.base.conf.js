@@ -20,6 +20,10 @@ module.exports = {
       'simplemde': 'simplemde/dist/simplemde.min.js'
     }
   },
+  externals: {
+    'highlight.js': 'hljs',
+    'simplemde': 'SimpleMDE'
+  },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
   },
