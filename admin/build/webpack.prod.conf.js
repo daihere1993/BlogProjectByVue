@@ -9,6 +9,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
+var Visualizer = require('webpack-visualizer-plugin');
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -33,6 +34,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/workflow/production.html
+    new Visualizer({ filename: './admin/statistics.html' }),
     new webpack.DefinePlugin({
       'process.env': env
     }),
