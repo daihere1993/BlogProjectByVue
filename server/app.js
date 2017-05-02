@@ -14,7 +14,9 @@ global.C = require('./config')
 global.U = require('./utils')
 
 // 处理跨域
-app.all('*', corsConfig)
+if (global.C.env === 'development') {
+  app.all('*', corsConfig)
+}
 
 function corsConfig (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
