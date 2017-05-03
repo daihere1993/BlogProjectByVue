@@ -17,8 +17,10 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-      'vue': 'vue/dist/vue.js'
     }
+  },
+  externals: {
+    'highlight.js': 'hljs'
   },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]

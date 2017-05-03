@@ -1,6 +1,6 @@
 import marked from 'marked'
 import { trim } from '../lib/utils'
-import dateUtil from '../lib/dateUtil'
+import dateUtil from '../../../utils/dateUtil'
 
 function date (val) {
   // 数据库中返回的是UTC时间, 得转化成本地时间
