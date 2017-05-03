@@ -2,8 +2,7 @@
   <header class="top-nav-container">
     <nav class="top-nav">
       <a href="javascript:;" class="vertical-center nav-logo">
-        <img src="../../assets/img/logo.png" class="logo vertical-center-content" alt="">
-        <span class="brand vertical-center-content">待着</span>
+        <span class="brand vertical-center-content">自制与光阴</span>
       </a>
       <ul class="nav-link-container">
         <li class="nav-link-item">
