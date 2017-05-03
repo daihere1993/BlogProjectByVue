@@ -42,4 +42,4 @@ var dateUtil = {
   }
 }
 
-modules.exports = dateUtil
+module.exports = dateUtil
