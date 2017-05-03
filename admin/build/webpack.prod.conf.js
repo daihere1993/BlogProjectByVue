@@ -32,7 +32,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/workflow/production.html
-    new Visualizer({ filename: './admin/statistics.html' }),
+    new Visualizer({ filename: './static/admin/statistics.html' }),
     new webpack.DefinePlugin({
       'process.env': env
     }),
