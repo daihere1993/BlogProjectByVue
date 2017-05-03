@@ -5,7 +5,7 @@ import dateUtil from '../../../utils/dateUtil'
 function date (val) {
   // 数据库中返回的是UTC时间, 得转化成本地时间
   val = new Date(val)
-  return dateUtil.format(val, 'yyyy-MM-dd HH:mm:ss')
+  return dateUtil.format(val, 'yyyy-MM-dd hh:mm:ss')
 }
 
 function md2text (markdown) {
