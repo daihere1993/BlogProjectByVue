@@ -22,7 +22,7 @@
   .post-thumb
     padding-left 5px
     &.published
-      border-left 2px solid $green
+      border-left 2px solid $main-color
     &.updated
       border-left 2px solid $yellow
     .post-title
@@ -36,10 +36,10 @@
       padding-bottom 0
     &.active
       .post-title
-        color $green
+        color $main-color
     &:hover
       .post-title
-        color $green
+        color $main-color
     .post-content
       color $light
       font-size 12px

@@ -276,14 +276,14 @@
     .article-editor-icon
       display none
     &:hover
-      color $green
-      border-bottom 2px solid $green
+      color $main-color
+      border-bottom 2px solid $main-color
       .article-editor-icon
         display inline
         cursor: pointer
     &.active
-      color $green
-      border-bottom 2px solid $green
+      color $main-color
+      border-bottom 2px solid $main-color
       position relative
   .search-list
     position absolute
@@ -300,7 +300,7 @@
     color $light
     padding-left 4px
     &:hover
-      color  $green
+      color  $main-color
     &+&
       padding-top 10px
   .delete-tag
@@ -312,7 +312,7 @@
   .tag-input
     border none
     background transparent
-    color $green
+    color $main-color
     font-size 14px
     outline 0
   .editor-toolbar
@@ -388,13 +388,13 @@
       a
         color $dark
         &:hover
-          border-bottom 2px solid $green
+          border-bottom 2px solid $main-color
     h3
       margin 3em 0 1.2em
       position relative
       &:before
         content "#"
-        color $green
+        color $main-color
         position absolute
         left -0.7em
         top -2px
@@ -410,12 +410,12 @@
     ul, ol
       padding-left 1.5em
     a
-      color $green
+      color $main-color
       font-weight 600
     blockquote
       margin 2em 0
       padding-left 20px
-      border-left 4px solid $green
+      border-left 4px solid $main-color
       p
         font-weight 600
         margin-left 0

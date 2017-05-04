@@ -1,8 +1,5 @@
 <template>
   <div>
-    <header class="banner">
-      <img src="../../assets/img/logo.png" class="banner-logo" alt="logo">
-    </header>
     <div class="center-box">
       <div class="flash-bar danger" v-show="loginErr">登录失败 {{loginErrMsg}}</div>
       <section class="login-box">
@@ -102,8 +99,8 @@
     outline 0
     &.btn-save
       color #fff
-      background-color $green
-      border-color $green
+      background-color $main-color
+      border-color $main-color
     &.btn-info
       color #fff
       background-color $grey
@@ -113,7 +110,7 @@
       background-color white
       border-color $grey
       &:hover
-        border-color $green
+        border-color $main-color
     &.btn-cancel
       color #fff
       background-color $red

@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <img class="sidebar-logo" src="../../assets/img/logo.png" alt="logo">
+    <img class="sidebar-logo" src="../../assets/img/avator.jpg" alt="logo">
     <nav class="aside-nav">
       <ul class="aside-nav-list">
         <li class="aside-nav-item">
@@ -49,7 +49,7 @@
       margin-top 30px
   .sidebar-logo
     margin-top 5px
-    width 36px
+    width 46px
   .aside-nav
     border-top 1px solid $border
   .aside-nav-list
@@ -68,13 +68,13 @@
     padding-top 10px
     border 1px solid $border
     border-radius 50%
-    color $green
+    color $main-color
     &.active
-      border 1px solid $green
+      border 1px solid $main-color
     &:hover
       color white
-      background $green
-      border 1px solid $green
+      background $main-color
+      border 1px solid $main-color
     .nav-icon
       font-size 22px
   .aside-menu
