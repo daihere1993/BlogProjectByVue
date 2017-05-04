@@ -54,7 +54,7 @@
       position relative
       &:before
         content "#"
-        color $green
+        color $main-color
         position absolute
         left -0.7em
         top -2px
@@ -70,12 +70,12 @@
     ul, ol
       padding-left 1.5em
     a
-      color $green
+      color $main-color
       font-weight 600
     blockquote
       margin 2em 0
       padding-left 20px
-      border-left 4px solid $green
+      border-left 4px solid $main-color
       p
         font-weight 600
         margin-left 0
@@ -150,7 +150,7 @@
       a
         color $dark
         &:hover
-          border-bottom 2px solid $green
+          color $main-color
     h4
       color $light
       margin 1.2em 0

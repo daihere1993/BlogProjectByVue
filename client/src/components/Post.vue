@@ -87,11 +87,10 @@
       color $light
       border-bottom 2px solid $light
       &:hover
-        color $green
-        border-bottom 2px solid $green
+        color $main-color
       &.active
-        color $green
-        border-bottom 2px solid $green
+        color $main-color
+        border-bottom 2px solid $main-color
     &+&
       margin-left 20px
   @media screen and (max-width: 720px)

@@ -1,6 +1,5 @@
 <template>
   <div class="post-list">
-    <!--这个div用来避免这个组件成为片段实例-->
     <article class="article" v-for="post in posts">
       <header>
         <h2 class="article-title">

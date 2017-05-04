@@ -26,16 +26,20 @@
 </template>
 <style lang="stylus">
   @import "../../stylus/_settings.styl"
-  $header-height = 40px
-  $after-header-box-height = 14px;
+  $header-height = 120px
+  $after-header-box-height = 10px;
+  .header
+    height: $header-height
+    margin-bottom 20px
   .top-nav-container
+    height: $header-height
+    line-height $header-height
     box-shadow 0 0 4px rgba(0,0,0,0.25)
     background $dark
   .top-nav
     max-width  850px
-    margin 0 auto
-    height $header-height
-    padding 25px 0
+    margin-left 340px
+    height: $header-height
   .nav-logo
     display inline-block
     .logo
@@ -48,14 +52,6 @@
     color $snow
     font-family $logo-font
     font-weight 500
-  /**
-    fixme! 留作以后的slogan样式
-  */
-  /*.slogan
-    font-size 1.3em
-    color $light
-    font-family $logo-font
-    font-weight 500*/
   .nav-link-container
     float right
     list-style-type none
@@ -72,15 +68,15 @@
     color $snow
     padding-bottom 3px
     &:hover, &.active
-        border-bottom 3px solid $green
+        color $main-color
   .after-header-box
     height $after-header-box-height
-    background $green
+    background $main-color
   .triangle-up
     width: 0
     height 0
-    border-left 7px solid transparent
-    border-right 7px solid transparent
+    border-left 5px solid transparent
+    border-right 5px solid transparent
     border-bottom $after-header-box-height solid $snow
   .after-header-box-gap
     margin 0 auto;
