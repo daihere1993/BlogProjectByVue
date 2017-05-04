@@ -13,9 +13,6 @@
       <div class="fix" style="margin: 20px 0;">
         <span class="tag" v-for="tag in tags"><a href="" class="tag-link active">{{tag.name}}</a></span>
       </div>
-      <!-- 多说评论框 start -->
-      <article id="duoshuo-comment" v-duoshuo="duoshuoOption"></article>
-      <!-- 多说评论框 end -->
     </article>
     <pagination :next="nextArticle !== null" :next-link="nextArticle?'/posts/'+nextArticle._id:''" :next-word="nextArticle&&nextArticle.title" :prev="prevArticle !== null" :prev-link="prevArticle?'/posts/'+prevArticle._id:''" :prev-word="prevArticle&&prevArticle.title" ></pagination>
   </div>
@@ -25,7 +22,6 @@
   import { markdown } from '../filters/index'
   import Pagination from './common/pagination.vue'
   import service from '../services/post/index'
-  import '../directives/vue-duoshuo'
   export default {
     components: {
       Pagination
@@ -41,8 +37,7 @@
         'tags': [],
         'visits': 0,
         'nextArticle': null,
-        'prevArticle': null,
-        'duoshuoOption': {}
+        'prevArticle': null
       }
     },
     methods: {
@@ -58,11 +53,6 @@
               for (var key in self._data) {
                 self[key] = res.data[key]
               }
-              let duoshuoOption = {
-                id: self.id,
-                title: self.title
-              }
-              self.duoshuoOption = duoshuoOption
             } else {
               self.title = '404 not found'
               self.createTime = ''
