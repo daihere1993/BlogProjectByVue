@@ -3,7 +3,7 @@
     <header class="top-nav-container">
       <nav class="top-nav">
         <a href="javascript:;" class="vertical-center nav-logo">
-          <span class="brand vertical-center-content">自制与光阴</span>
+          <span class="brand vertical-center-content">光阴的博客</span>
         </a>
         <ul class="nav-link-container">
           <li class="nav-link-item">
@@ -19,7 +19,7 @@
       </nav>
     </header>
     <div class="after-header-box">
-      <div class="after-header-box-gap triangle-up"></div>
+      <div id="green-line"></div>
     </div>
   </div>
     
@@ -69,17 +69,9 @@
     padding-bottom 3px
     &:hover, &.active
         color $main-color
-  .after-header-box
-    height $after-header-box-height
-    background $main-color
-  .triangle-up
-    width: 0
-    height 0
-    border-left 5px solid transparent
-    border-right 5px solid transparent
-    border-bottom $after-header-box-height solid $snow
-  .after-header-box-gap
-    margin 0 auto;
+  #green-line 
+    height 10px
+    background url('../../assets/img/green_line.png') center no-repeat
 </style>
 <script>
   export default{
