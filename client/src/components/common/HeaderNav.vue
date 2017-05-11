@@ -35,7 +35,7 @@
     height: $header-height
     line-height $header-height
     box-shadow 0 0 4px rgba(0,0,0,0.25)
-    background $dark
+    background #666666
   .top-nav
     max-width  850px
     margin-left 340px
