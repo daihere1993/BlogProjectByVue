@@ -33,8 +33,8 @@
   import { _debounce, trim, marked } from '../../lib/utils'
   const updateTitleWithDebounce = _debounce(function (title) {
     this.submitPostTitle(title).then(() => {
-      this.savePostTitle()
       this.editPostTitle()
+      this.savePostTitle()
     }).catch(err => {
       if (err) throw err
       window.alert('网络错误,标题保存失败', 'warning')
