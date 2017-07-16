@@ -1,7 +1,7 @@
 <template>
   <section :class="{ 'editor-active': !postSaved}" >
     <div :class="{ 'title-active': !postTitleSaved}">
-      <input type="text" class="form-control big only-border-bottom" :value="postTitle" @input="updateTitle">
+      <input type="text" class="form-control big only-border-bottom" v-model="postTitle" @input="updateTitle">
     </div>
     <div class="clearfix">
       <div class="half-container">
@@ -34,6 +34,7 @@
   const updateTitleWithDebounce = _debounce(function (title) {
     this.submitPostTitle(title).then(() => {
       this.savePostTitle()
+      this.editPostTitle()
     }).catch(err => {
       if (err) throw err
       window.alert('网络错误,标题保存失败', 'warning')
@@ -216,7 +217,6 @@
         })
       },
       updateTitle (e) {
-        this.editPostTitle()
         // 这里没有使用vuex官方实例当中的计算属性的setters再配合vue的debounce
         // 而是使用自己的debounce函数是因为
         // 使用计算属性的话,只要依赖项有变化,就会引起setters执行
