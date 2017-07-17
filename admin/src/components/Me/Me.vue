@@ -4,12 +4,10 @@
     </nav-aside>
     <div class="ovh">
       <h3 class="page-title">关于我 <button type="button" class="btn btn-save r" style="margin-right: 50px;margin-top:-6px" @click="save">保存</button></h3>
-      <editor :content="content"></editor>
+      <editor :content="content" preview-class="markdown-body" @mdEditorInput="onMdEditorInput"></editor>
     </div>
   </div>
 </template>
-<style lang="stylus">
-</style>
 <script>
   import NavAside from '../Common/NavAside.vue'
   import Editor from '../Common/Editor.vue'
@@ -44,6 +42,10 @@
           if (error) throw error
           window.alert('保存失败')
         })
+      },
+
+      onMdEditorInput (content) {
+        this.content = content
       }
     }
   }

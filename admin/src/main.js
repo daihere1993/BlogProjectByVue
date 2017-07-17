@@ -8,6 +8,8 @@ import routes from './routes'
 import { date } from './filters'
 import 'font-awesome/css/font-awesome.min.css'
 import 'vue-alert-osd/lib/vue-alert-osd.min.css'
+import 'github-markdown-css'
+
 
 Vue.use(VueRouter)
 const router = new VueRouter({

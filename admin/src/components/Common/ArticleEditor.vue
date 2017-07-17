@@ -22,15 +22,15 @@
         <button type="button" class="btn btn-border r" v-show="articleIdOfPost === null" @click="deletePost">删除草稿</button>
       </div>
     </div>
-    <textarea id="editor" style="opacity: 0"></textarea>
+    <editor :content="mdContent" preview-class="markdown-body" @mdEditorInput="onMdEditorInput"></editor>
   </section>
 </template>
 
 <script>
+  import Editor from '../Common/Editor.vue'
   import { mapActions, mapGetters } from 'vuex'
   import service from '../../services/posts/index'
-  import SimpleMDE from 'simplemde'
-  import { _debounce, trim, marked } from '../../lib/utils'
+  import { _debounce, trim } from '../../lib/utils'
   const updateTitleWithDebounce = _debounce(function (title) {
     this.submitPostTitle(title).then(() => {
       this.editPostTitle()
@@ -40,7 +40,21 @@
       window.alert('网络错误,标题保存失败', 'warning')
     })
   }, 500)
-  let smde
+  const postDraft = _debounce(function (mdContent) {
+    console.log(this.currentPostId)
+    service.modifyDraftContent(this.currentPostId, mdContent).then(res => {
+      if (res.success) {
+        this.submitPostExcerpt(res.data.excerpt, res.data.lastEditTime)
+        this.savePost()
+      } else {
+        return Promise.reject()
+      }
+    }).catch(err => {
+      if (err) throw err
+      window.alert('网络错误!文档保存失败!请自行保存文档!', 'warning')
+    })
+  }, 1000, false)
+
   export default {
     name: 'article-editor',
     data () {
@@ -52,41 +66,14 @@
         tags: [],
         tagsToAdd: [],
         tagNew: '',
-        tagInput: false
+        tagInput: false,
+        mdContent: ''
       }
     },
+    components: {
+      Editor
+    },
     mounted () {
-      smde = new SimpleMDE({
-        autoDownloadFontAwesome: false,
-        element: document.getElementById('editor'),
-        previewRender: function (plainText) {
-          return marked(plainText) // Returns HTML from a custom parser
-        },
-        spellChecker: false
-      })
-      let postDraft = _debounce(() => {
-        service.modifyDraftContent(this.currentPostId, smde.value()).then(res => {
-          if (res.success) {
-            this.submitPostExcerpt(res.data.excerpt, res.data.lastEditTime)
-            this.savePost()
-          } else {
-            return Promise.reject()
-          }
-        }).catch(err => {
-          if (err) throw err
-          window.alert('网络错误!文档保存失败!请自行保存文档!', 'warning')
-        })
-      }, 1000, false)
-      smde.codemirror.on('change', () => {
-        if (this.change === true) {
-          this.change = false
-          return
-        }
-        if (this.postSaved) {
-          this.editPost()
-        }
-        postDraft()
-      })
       this.change = true
       if (this.currentPostId !== null) {
         service.getDraft(this.currentPostId).then(res => {
@@ -95,7 +82,7 @@
             this.tagInput = false
             this.tags = res.data.tags
             this.$nextTick(() => {
-              smde.value(res.data.content)
+              this.mdContent = res.data.content
             })
           }
         }).catch(err => {
@@ -103,9 +90,6 @@
           window.alert('网络错误,获取文章失败', 'warning')
         })
       }
-    },
-    beforeDestroy () {
-      smde.toTextArea()
     },
     computed: {
       ...mapGetters([
@@ -126,7 +110,7 @@
               this.tagInput = false
               this.tags = res.data.tags
               this.$nextTick(() => {
-                smde.value(res.data.content)
+                this.mdContent = res.data.content
               })
             }
           }).catch(err => {
@@ -140,6 +124,16 @@
       }
     },
     methods: {
+      onMdEditorInput (content) {
+        if (this.change === true) {
+          this.change = false
+          return
+        }
+        if (this.postSaved) {
+          this.editPost()
+        }
+        postDraft.call(this, content)
+      },
       ...mapActions([
         'editPost',
         'savePost',
@@ -325,160 +319,4 @@
     border-left 1px solid transparent
   .CodeMirror-sided
     box-sizing border-box
-  .editor-preview,
-  .editor-preview-side
-    background white
-    padding: 0.2em 1.4em 0;
-    font-family $body-font
-    font-size $body-font-size
-    -webkit-font-smoothing antialiased
-    -moz-osx-font-smoothing grayscale
-    color $medium
-
-    a
-      text-decoration none
-      color $medium
-
-    :focus
-      outline 0
-
-    img
-      border none
-
-    h1, h2, h3, h4, strong
-      font-weight 600
-      color $dark
-
-    code, pre
-      font-family $code-font
-      font-size $code-font-size
-      background-color $codebg
-      -webkit-font-smoothing initial
-      -moz-osx-font-smoothing initial
-
-    code
-      color #e96900
-      padding 3px 5px
-      margin 0 2px
-      border-radius 2px
-      white-space nowrap
-
-    em
-      color $light
-
-    p
-      word-spacing 0.05em
-
-    img
-      max-width 100%
-    span.light
-      color $light
-    span.info
-      font-size .85em
-      display inline-block
-      vertical-align middle
-      width 280px
-      margin-left 20px
-    h1
-      margin 0 0 .5em
-    h2
-      margin: 2em 0 0.8em;
-      padding-bottom: 0.7em;
-      border-bottom: 1px solid #ddd;
-      a
-        color $dark
-        &:hover
-          border-bottom 2px solid $main-color
-    h3
-      margin 3em 0 1.2em
-      position relative
-      &:before
-        content "#"
-        color $main-color
-        position absolute
-        left -0.7em
-        top -2px
-        font-size 1.2em
-        font-weight bold
-    h4
-      color $light
-      margin 1.2em 0
-    figure, p, ul, ol
-      margin 1.2em 0
-    p, ul, ol
-      line-height 1.6em
-    ul, ol
-      padding-left 1.5em
-    a
-      color $main-color
-      font-weight 600
-    blockquote
-      margin 2em 0
-      padding-left 20px
-      border-left 4px solid $main-color
-      p
-        font-weight 600
-        margin-left 0
-    iframe
-      margin 1em 0
-    p.tip
-      padding 12px 24px 12px 30px
-      margin 2em 0
-      border-left 4px solid $red
-      background-color $codebg
-      position relative
-      border-bottom-right-radius $radius
-      border-top-right-radius $radius
-      &:before
-        position absolute
-        top 14px
-        left -12px
-        background-color $red
-        color #fff
-        content "!"
-        width 20px
-        height 20px
-        border-radius 100%
-        text-align center
-        line-height 20px
-        font-weight bold
-        font-family $logo-font
-        font-size 14px
-    figure, p
-      margin-left 0
-    pre
-      position relative
-      background-color $codebg
-      padding .8em .8em .4em
-      line-height 1.1em
-      border-radius $radius
-      code
-        overflow-x auto
-        display block
-        padding 1.2em 1.4em
-        line-height 1.5em
-        margin 0
-        color #525252
-        border-radius 0
-        white-space pre
-        &.lang-html, &.lang-javascript, &.lang-bash, &.lang-css
-          &:after
-            position absolute
-            top 0
-            right 0
-            color #ccc
-            text-align right
-            font-size .75em
-            padding 5px 10px 0
-            line-height 15px
-            height 15px
-            font-weight 600
-        &.lang-html:after
-          content 'HTML'
-        &.lang-javascript:after
-          content 'JS'
-        &.lang-bash:after
-          content 'Shell'
-        &.lang-css:after
-          content 'CSS'
 </style>
