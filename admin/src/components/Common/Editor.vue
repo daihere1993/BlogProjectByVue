@@ -51,15 +51,13 @@
     },
     watch: {
       content (val) {
-        if (val !== '') {
-          this.$nextTick(() => {
-            if (this.smde) {
-              if (val !== this.smde.value()) {
-                this.smde.value(val)
-              }
+        this.$nextTick(() => {
+          if (this.smde) {
+            if (val !== this.smde.value()) {
+              this.smde.value(val)
             }
-          })
-        }
+          }
+        })
       }
     }
   }

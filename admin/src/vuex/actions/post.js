@@ -64,7 +64,7 @@ const actions = {
     })
   },
   
-  submitPostExcerpt: ({ commit}, excerpt, time) => {
+  submitPostExcerpt: ({ commit}, {excerpt, time}) => {
     commit(types.POST_EXCERPT_MODIFY, excerpt)
     commit(types.POST_LAST_EDIT_TIME,time)
   },

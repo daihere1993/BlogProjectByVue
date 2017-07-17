@@ -41,10 +41,9 @@
     })
   }, 500)
   const postDraft = _debounce(function (mdContent) {
-    console.log(this.currentPostId)
     service.modifyDraftContent(this.currentPostId, mdContent).then(res => {
       if (res.success) {
-        this.submitPostExcerpt(res.data.excerpt, res.data.lastEditTime)
+        this.submitPostExcerpt({excerpt: res.data.excerpt, time: res.data.lastEditTime})
         this.savePost()
       } else {
         return Promise.reject()
