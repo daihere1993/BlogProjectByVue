@@ -20,6 +20,7 @@
     "express": "^4.14.0",
     "express-cors": "0.0.3",
     "font-awesome": "^4.6.3",
+    "formidable": "^1.1.1",
     "github-markdown-css": "^2.8.0",
     "highlight.js": "^9.7.0",
     "jsonwebtoken": "^7.1.9",
