@@ -27,7 +27,3 @@ npm run dev-client
 npm run dev-admin 
  
 ```
-
-## 注
-
-	- 目前的版本适合express和vue的初学者学习
