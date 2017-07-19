@@ -23,7 +23,54 @@
       this.smde = new SimpleMDE({
         initialValue: this.content,
         element: element,
-        spellChecker: false
+        spellChecker: false,
+        toolbar: {
+          image: {
+            action: null,
+            className: 'md-upload-img fa fa-picture-o',
+            whenEleCreate: function (el) {
+              let self = this
+              // add custom class
+              el.classList.add('md-upload-img')
+              // append input element
+              let inputEle = document.createElement('input')
+              inputEle.setAttribute('type', 'file')
+              inputEle.setAttribute('multiple', true)
+              inputEle.setAttribute('accept', 'image/*')
+              el.appendChild(inputEle)
+
+              inputEle.onchange = (evt) => {
+                let imgs = evt.currentTarget.files
+                if (imgs.length) {
+                  let xhr = new window.XMLHttpRequest()
+                  let formData = new window.FormData()
+                  for (let i = 0; i < imgs.length; i++) {
+                    formData.append('upload_img_' + i, imgs[i])
+                  }
+                  xhr.open('POST', 'http://localhost:3000/upload', true)
+                  xhr.onload = (event) => {
+                    if (xhr.status === 200) {
+                      let cm = self.codemirror
+                      let stat = self.getState()
+                      let options = self.options
+                      let res = JSON.parse(event.target.response)
+                      let urls = res.urls
+
+                      urls.forEach((url) => {
+                        self.replaceSelection(cm, stat.iamge, options.insertTexts.image, url)
+                      })
+                    } else {
+                      console.log('fail')
+                    }
+                  }
+                  xhr.send(formData)
+                }
+              }
+
+              return el
+            }
+          }
+        }
       })
 
       // 添加自定义的previewClass

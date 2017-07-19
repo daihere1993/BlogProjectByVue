@@ -30,7 +30,7 @@
     "mongodb": "^2.2.10",
     "mongoose": "^4.6.2",
     "morgan": "^1.7.0",
-    "simplemde": "^1.11.2",
+    "simplemde-extend": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "thunkify": "^2.1.2",
