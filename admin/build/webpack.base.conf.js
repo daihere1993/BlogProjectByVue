@@ -17,9 +17,9 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
-      'SimpleMDE': 'simplemde/dist/simplemde.min.js',
+      'SimpleMDE': 'simplemde-extend/dist/simplemde.min.js',
       'github-markdown-css': 'github-markdown-css/github-markdown.css',
-      'simpleMDEStyle': 'simplemde/dist/simplemde.min.css'
+      'simpleMDEStyle': 'simplemde-extend/dist/simplemde.min.css'
     }
   },
   externals: {
