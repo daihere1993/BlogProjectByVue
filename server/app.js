@@ -41,7 +41,7 @@ app.get('/admin', (req, res) => {
   return res.sendFile(process.cwd() + '/dist/admin.html');
 })
 
-app.post('/upload', (req, res) => {
+app.post('/api/upload', (req, res) => {
 	let relativeImageUrl = '/dist/static/upload/images/';
   let form = new formidable.IncomingForm();
   form.uploadDir = process.cwd() + relativeImageUrl;
@@ -90,7 +90,7 @@ app.post('/upload', (req, res) => {
 
 		res.json({
 			status: 200,
-			msg: 'success',
+			success: true,
 			urls: imgUrls
 		});
   });

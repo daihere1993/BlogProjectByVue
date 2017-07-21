@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+  import api from '../../services/index.js'
   import SimpleMDE from 'SimpleMDE'
   import 'highlight.js'
   export default {
@@ -42,28 +43,24 @@
               inputEle.onchange = (evt) => {
                 let imgs = evt.currentTarget.files
                 if (imgs.length) {
-                  let xhr = new window.XMLHttpRequest()
+                  // let xhr = new window.XMLHttpRequest()
                   let formData = new window.FormData()
                   for (let i = 0; i < imgs.length; i++) {
                     formData.append('upload_img_' + i, imgs[i])
                   }
-                  xhr.open('POST', 'http://localhost:3000/upload', true)
-                  xhr.onload = (event) => {
-                    if (xhr.status === 200) {
+
+                  api.post('upload', formData).then(res => {
+                    if (res.success) {
                       let cm = self.codemirror
                       let stat = self.getState()
                       let options = self.options
-                      let res = JSON.parse(event.target.response)
                       let urls = res.urls
 
                       urls.forEach((url) => {
                         self.replaceSelection(cm, stat.iamge, options.insertTexts.image, url)
                       })
-                    } else {
-                      console.log('fail')
                     }
-                  }
-                  xhr.send(formData)
+                  })
                 }
               }
 
