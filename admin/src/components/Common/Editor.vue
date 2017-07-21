@@ -88,11 +88,6 @@
         wrapper.appendChild(preview)
       }
     },
-    beforeDestroy () {
-      this.smde.toTextArea()
-      let editor = document.getElementById('editor')
-      editor.outerHTML = editor.outerHTML
-    },
     watch: {
       content (val) {
         this.$nextTick(() => {

@@ -68,9 +68,14 @@ export default {
       .then(checkStatus)
   },
   post (url, param = {}, headers = {}, host = process.env.api) {
-    let reqHeaders = new Headers(headers)
-    // reqHeaders.append('Content-Type', 'application/json');
-    // reqHeaders.append('Accept', 'application/json');
+    let reqHeaders = new Headers(headers), body
+    if (param instanceof FormData) {
+      body = param
+    } else {
+      body = JSON.stringify(param)
+      reqHeaders.append('Content-Type', 'application/json');
+      reqHeaders.append('Accept', 'application/json');
+    }
     if(null !== store.state.token.token){
       reqHeaders.append('Authorization','Bearer '+store.state.token.token)
     }
@@ -79,7 +84,7 @@ export default {
       method: 'POST',
       headers: reqHeaders,
       mode:'cors',
-      body: param instanceof FormData ? param : JSON.stringify(param)
+      body: body
     }
 
     return fetch(url, init)
