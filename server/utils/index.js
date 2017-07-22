@@ -38,6 +38,29 @@ const Logger = require('mini-logger'),
         //统一服务报错处理
         res && res.status(500).send({ error: "服务器内部错误" })
       }})
+    },
+    fsExistSync: function (path) {
+      try {
+        fs.accessSync(path);
+      } catch (error) {
+        return false;
+      }
+      return true;
+    },
+    // 暂时只支持path是绝对路径的情况
+    fsMkdirSync: function (path) {
+      const paths = path.split('/');
+      
+      path = '';
+      paths.forEach((path_str) => {
+        if (path_str) {
+          path += path_str;
+          if (!this.fsExistSync(path)) {
+            fs.mkdirSync(path);
+          }
+        }
+        path += '/';
+      })
     }
   }
 

@@ -45,6 +45,9 @@ app.post('/api/upload', (req, res) => {
 	let relativeImageUrl = '/dist/static/upload/images/';
   let form = new formidable.IncomingForm();
   form.uploadDir = process.cwd() + relativeImageUrl;
+	if (!global.U.fsExistSync(form.uploadDir)) {
+		global.U.fsMkdirSync(form.uploadDir);
+	}
   form.encoding = 'utf-8';
   form.parse(req, function(err, fields, files) {
     if (err) {
