@@ -13,7 +13,7 @@ const path = require('path'),
 let config = {
   app: {
     name: 'blog',
-    port: 3000,
+    port: 3389,
     adminPath: '/api'
   },
   debug: false,
