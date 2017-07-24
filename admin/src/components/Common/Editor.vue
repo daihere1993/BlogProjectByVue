@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="editor-wrap">
       <textarea style="opacity: 0"></textarea>
     </div>
 </template>

@@ -26,6 +26,7 @@
     height 100%
     width 300px
     font-size 20px
+    overflow scroll
   .post-add
     cursor pointer
     float right

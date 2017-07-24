@@ -1,5 +1,5 @@
 <template>
-  <section :class="{ 'editor-active': !postSaved}" >
+  <section class="article-edit-wrap" :class="{'editor-active': !postSaved}" >
     <div :class="{ 'title-active': !postTitleSaved}">
       <input type="text" class="form-control big only-border-bottom" v-model="postTitle" @input="updateTitle">
     </div>
@@ -22,7 +22,7 @@
         <button type="button" class="btn btn-border r" v-show="articleIdOfPost === null" @click="deletePost">删除草稿</button>
       </div>
     </div>
-    <editor :content="mdContent" preview-class="markdown-body" @mdEditorInput="onMdEditorInput"></editor>
+    <editor class="article-editor" :content="mdContent" preview-class="markdown-body" @mdEditorInput="onMdEditorInput"></editor>
   </section>
 </template>
 
@@ -240,6 +240,16 @@
 
 <style lang="stylus">
   @import '../../stylus/_settings.styl'
+  .article-edit-wrap 
+    display flex
+    flex-direction column
+    height 100%
+  .article-editor
+    display flex
+    flex-direction column
+    .CodeMirror 
+      flex-shrink 1
+      overflow scroll
   .title-active
     .big
       border 1px solid $yellow
