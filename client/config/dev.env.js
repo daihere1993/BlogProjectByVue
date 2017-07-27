@@ -7,5 +7,5 @@ module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   port: port,
   index: '"http://localhost:' + port + '"',
-  api: '"http://localhost:3389/api/"',
+  api: '"http://localhost:8000/api/"',
 })

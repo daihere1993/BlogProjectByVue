@@ -38,7 +38,7 @@ router.beforeEach( (to, from, next, redirect) => {
   }
 })
 
-Alert.set('duration', 3389)
+Alert.set('duration', 3000)
 window.alert = Alert
 Vue.filter('date', date)
 
