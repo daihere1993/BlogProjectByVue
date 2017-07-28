@@ -3,7 +3,7 @@ module.exports = {
     name: 'app',
     script: './server/app.js',
     watch: true,
-    env_production: {
+    env: {
       'NODE_ENV': 'production'
     }
   }]

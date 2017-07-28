@@ -20,7 +20,7 @@ let config = {
   env: 'production',
   // 配置数据库
   mongoConfig: {
-    url: 'mongodb://localhost:27017/first-blog',
+    url: 'mongodb://localhost:27017/blog',
     opts: {
       user: '',
       pass: ''

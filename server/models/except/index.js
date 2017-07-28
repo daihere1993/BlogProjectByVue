@@ -4,6 +4,7 @@ const path = require('path'),
 
 // 连接数据库
 mongoose.connect(C.mongoConfig.url, C.mongoConfig.options)
+console.log('connect: ' + C.mongoConfig.url + ' success!')
 // 遍历所有model
 U.forEachFilesByPath(path.join(__dirname, '..', '..', 'models'), {Schema}, (file, retModule) => {
   name = path.basename(file, '.js')
