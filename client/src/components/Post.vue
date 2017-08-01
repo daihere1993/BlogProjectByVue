@@ -9,7 +9,7 @@
         发布于
         <span class="article-date">{{ createTime | date }}</span>
       </div>
-      <div class="article-content" v-html="parseHtml(content)"></div>
+      <div class="article-content markdown-body" v-html="parseHtml(content)"></div>
       <div class="fix" style="margin: 20px 0;">
         <span class="tag" v-for="tag in tags"><a href="" class="tag-link active">{{tag.name}}</a></span>
       </div>

@@ -10,7 +10,7 @@
         发布于:
         <span class="article-date">{{post['createTime'] | date}}</span>
       </div>
-      <p v-html="parseHtml(post['excerpt'])"></p>
+      <p class="markdown-body" v-html="parseHtml(post['excerpt'])"></p>
       <footer>
         <router-link :to="{path: 'post/' + post['_id']}">阅读全文</router-link>
       </footer>

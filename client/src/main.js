@@ -4,6 +4,7 @@ import routes from './routes'
 import Blog from './Blog'
 import { date } from './filters/index'
 import './stylus/index.styl'
+import 'github-markdown-css'
 
 Vue.use(VueRouter)
 Vue.filter('date', date)

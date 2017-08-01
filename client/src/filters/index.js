@@ -1,10 +1,6 @@
 import marked from 'marked'
-import highlight from 'highlight.js'
 import dateUtil from '../../../utils/dateUtil'
 
-highlight.configure({
-  classPrefix: ''     // don't append class prefix
-})
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -13,10 +9,7 @@ marked.setOptions({
   tables: true,
   breaks: true,
   smartLists: true,
-  smartypants: true,
-  highlight: function (code,lang) {
-    return highlight.highlight(lang, code).value;
-  }
+  smartypants: true
 })
 
 function date (val) {
