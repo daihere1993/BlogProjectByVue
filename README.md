@@ -2,16 +2,10 @@
 
 > A Vue.js project
 
-## 版本
-
-vue: 2.1.8
-vuex: 2.1.1
-vue-router: 2.1.1
-
-## 运行
+## Useage
 
 ``` bash
-注: 本地必须依据安装了mongodb并且启动了服务
+# Notes: Comfire your mongodb is launched.
 
 # install dependencies
 npm install
